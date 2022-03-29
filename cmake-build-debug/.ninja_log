@@ -1,0 +1,10 @@
+# ninja log v5
+0	19	1648421765328747387	CMakeFiles/Test.dir/Char-related_exercises/lower.c.o	a90515a0a576b65e
+23	52	1648421769832030356	Test	135f35fa31df2da8
+1	26	1648421611473809305	CMakeFiles/Test.dir/Bit-Related_exercises/bitCount.c.o	4e132a1c7323a375
+1	23	1648421769802030692	CMakeFiles/Test.dir/main.c.o	4366de643ded8de6
+0	35	1648421611480475897	CMakeFiles/Test.dir/Bit-Related_exercises/invert.c.o	41e62fd3080192fe
+0	17	1648421830641351365	build.ninja	436d52f39a091ff8
+0	25	1648421611470476009	CMakeFiles/Test.dir/Bit-Related_exercises/rightRot.c.o	5da2de5af60365e6
+1	36	1648421611480475897	CMakeFiles/Test.dir/Bit-Related_exercises/basic_operations_bit.c.o	d2b4f4fbdea613f2
+0	35	1648421611480475897	CMakeFiles/Test.dir/Bit-Related_exercises/setbits.c.o	d4be3db77dd0115f

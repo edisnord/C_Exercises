@@ -1,0 +1,3 @@
+/home/edish/CLionProjects/The C Programming Language/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/edish/CLionProjects/The C Programming Language/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/edish/CLionProjects/The C Programming Language/cmake-build-debug/CMakeFiles/Test.dir

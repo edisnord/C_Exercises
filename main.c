@@ -1,6 +1,7 @@
 #include "stdio.h"
-#include "Char-related exercises/lower.h"
+#include "chapter_3.h"
 
 int main(){
-    printf("%c", lower('a'));
+
+
 }

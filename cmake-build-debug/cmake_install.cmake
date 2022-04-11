@@ -1,4 +1,4 @@
-# Install script for directory: /home/edish/CLionProjects/The C Programming Language
+# Install script for directory: /home/edis/CLionProjects/C_Exercises
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/edish/CLionProjects/The C Programming Language/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/edis/CLionProjects/C_Exercises/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

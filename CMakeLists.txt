@@ -8,6 +8,6 @@ add_executable(Test "Bit-Related exercises/setbits.c" "Bit-Related exercises/set
         "Bit-Related exercises/basic_operations_bit.h" "Bit-Related exercises/basic_operations_bit.c"
         "Bit-Related exercises/rightRot.c" "Bit-Related exercises/rightRot.h" "Bit-Related exercises/bitCount.c"
         "Bit-Related exercises/bitCount.h" "Char-related exercises/lower.c" "Char-related exercises/lower.h"
-        "chapter_3.h" "chapter_3.c")
+        "chapter_3.h" "chapter_3.c" "DoublyLinkedList/DoublyLinkedList.c" "DoublyLinkedList/DoublyLinkedList.h")
 
 target_link_libraries(Test m)

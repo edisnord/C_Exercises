@@ -1,4 +1,16 @@
 #include "chapter_3.h"
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
+void reverse(char s[]) {
+    int c, i, j;
+    for ( i = 0, j = strlen(s)-1; i < j; i++, j--) {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
+    }
+}
 
 void escape(char s[], char t[]){
     int i = 0;
@@ -62,3 +74,76 @@ int binarySearch(int x, int v[], int n){
     else return -1;
 
     }
+
+void expand(char s1[], char s2[]){
+    int s2index = 0;
+    for (int i = 0; i < strlen(s1); ++i) {
+        if(s1[i+1] != '-') {
+            s2[s2index++] = s1[i];
+        } else {
+            char upperbound;
+            int multi = 0;
+            for (int j = i + 1; s1[j] == '-'; j = j + 2) {
+                multi += 1;
+                upperbound = s1[j + 1];
+            }
+            if(!multi) upperbound = s1[i];
+            i=i + 2 * multi;
+            for (int j = s1[i - 2 * multi]; j <= upperbound; ++j) {
+                s2[s2index++] = j;
+            }
+
+        }
+    }
+    s2[s2index] = '\0';
+}
+
+void itoa(int n, char s[]){
+    int i, sign;
+    sign = n;
+    do{
+        s[i++] = abs(n % 10) + '0';
+    } while (n /= 10);
+
+    if(sign < 0){
+        s[i++] = '-';
+    }
+    s[i] = '\0';
+}
+
+void itob(int n, char s[], int b){
+    int helper, values, remainder;
+    helper = b;
+    do{ values++; }while ((helper *= b) < n) ;
+    for (int i = values; i >= 0 ; --i) {
+        if(i == values) {
+            remainder = n / pow((double)b, i);
+            s[values - i] = remainder + '0';
+            n = n % (int)pow((double)b, i);
+            continue;
+        }
+        s[values - i] = n / (int)pow((double)b, i) + '0';
+        n = n % (int)pow((double)b, i);
+    }
+    s[values+1] = '\0';
+}
+
+void itoa2(int n, char s[], int fieldWidth){
+    int i, sign;
+    i = 0;
+    sign = n;
+    do{
+        s[i++] = abs(n % 10) + '0';
+    } while (n /= 10);
+
+    if(sign < 0){
+        s[i++] = '-';
+    }
+    if(i < fieldWidth){
+        while(i < fieldWidth){
+            s[i++] = ' ';
+        }
+    }
+    reverse(s);
+    s[strlen(s)] = '\0';
+}

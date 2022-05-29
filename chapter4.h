@@ -4,6 +4,8 @@
 
 #ifndef TEST_CHAPTER4_H
 #define TEST_CHAPTER4_H
+#include <ctype.h>
+
 //4-1
 int strindex(const char s[], const char t[]);
 

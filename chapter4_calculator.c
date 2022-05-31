@@ -3,64 +3,124 @@
 //
 
 #include "chapter4_calculator.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include "string.h"
+#include "math.h"
 
 char buf[100];
 int bufp;
 int sp;
 double val[100];
 
-int getch(){
-    return (bufp>0) ? buf[bufp--] : getchar();
+//4-8 Not more than one character of pushback
+int getch() {
+    return (bufp == 1) ? buf[bufp--] : getchar();
 }
 
-void ungetch(int c){
-    if(bufp >= BUFSIZE)
+//4-9 Handle EOF
+void ungetch(int c) {
+    if (bufp >= BUFSIZE)
         puts("ungetch: too many characters!");
-    else
+    else if (c == EOF) {
+        puts("ungetch: EOF detected, exiting...");
+        exit(EOF);
+    } else
         buf[bufp++] = c;
 }
 
-int getop(char s[]){
-    int i,c,flag;
-    flag = 0;
-    while((s[0] = c = getch()) == ' ' || c == '\t');
-    s[1] = '\0';
-    //4-3 Handle negative numbers
-    if(!isdigit(c) && c  != '.') {
-        if(c == '-' && isdigit(flag = getch())){
-            s[0] = flag;
-            flag = 1;
-        } else if (c == '-'){
-            if(flag == '\n') return '\t';
-            else if(flag == '\0') return '-';
-            flag = 0;
+//4-10 use getline()
+int checkLine(char s[]) {
+    double returned;
+    double op2;
+    int operator;
+    size_t buflen = 100 * sizeof(char);
+    char *tok;
+    getline(&s, &buflen, stdin);
+    char *tmp = malloc(buflen * sizeof(char));
+    strcpy(tmp, s);
+    for (tok = strtok(tmp, " "); tok && *tok; tok = strtok(NULL, " \n")) {
+        if ((operator = getop(tok, &returned))) {
+            switch (operator) {
+                case 0:
+                    push(returned);
+                case '+':
+                    push(pop() + pop());
+                    break;
+                case '*':
+                    push(pop() * pop());
+                    break;
+                case '\\':
+                    puts("unknown input\n");
+                case '/':
+                    op2 = pop();
+                    if (op2 != 0.0)
+                        push(pop() / op2);
+                    else
+                        puts("error: division by 0");
+                    break;
+                    // 4-3 Add modulus support
+                case '%':
+                    op2 = pop();
+                    push((int) pop() % (int) op2);
+                    break;
+                    // 4-5 sin
+                case '\'':
+                    push(sin(returned));
+                 break;
+                 //4-5 pow
+                case '^':
+                    op2 = pop();
+                    push(pow(pop(), op2));
+                    break;
+                    //4-5 exp
+                case '\t':
+                    push(exp(returned));
+                    break;
+            }
+        } else {
+            //number returned
+            push(returned);
         }
-        if(!flag)
-            return c;
     }
-    i = 0 + flag;
-    if(isdigit(c))
-        while (isdigit(s[++i] = c = getch()));
-    if(c == '.')
-        while(isdigit(s[++i] = c = getch()));
-    s[i] = '\0';
-    if(c != EOF)
-        ungetch(c);
-    if(!flag)
-        return NUMBER;
-    else
-        return NEGNUMBER;
+    printf("%.8g\n", pop());
 }
 
-void push(double f){
-    if(sp < MAXVAL)
+int getop(char s[], double *parsed) {
+    char *error;
+    int flag = 1;
+    if (s[0] == '-' && isdigit(s[1])) {
+        flag *= -1;
+        *parsed = strtod(&s[1], &error) * flag;
+        return (error[0] == '\0') ? 0 : '\\';
+    } else if (s[0] == '-' && !isdigit(s[1])) {
+        return '-';
+    }
+    if (isdigit(s[0])) {
+        *parsed = strtod(s, &error);
+        return (error[0] == '\0') ? 0 : '\\';
+    } else {
+        if (strstr(s, "sin") != NULL){
+            *parsed = strtod(s, &error);
+            return '\'';
+        }
+        else if (strstr(s, "exp") != NULL){
+            *parsed = strtod(s, &error);
+            return '\t';
+        }
+        else return s[0];
+    }
+}
+
+void push(double f) {
+    if (sp < MAXVAL)
         val[sp++] = f;
     else
         printf("error: stack full, can't push %g\n", f);
 }
 
-double pop(){
-    if(sp > 0)
+double pop() {
+    if (sp > 0)
         return val[--sp];
     else {
         puts("error: stack empty\n");
@@ -69,39 +129,37 @@ double pop(){
 }
 
 //4-4 clear stack
-void clearStack(){
+void clearStack() {
     sp = 0;
     puts("stack has been cleared");
 }
 
 //4-4 Swap top elements
-void swap(){
-    if(sp > 0){
+void swap() {
+    if (sp > 0) {
         double temp = val[sp - 1];
         val[sp - 1] = val[sp - 2];
         val[sp - 2] = temp;
         puts("Top elements swapped");
-    }
-    else {
+    } else {
         puts("error: stack empty\n");
     }
 }
 
 //4-4 duplicate top element
-void dupeTop(){
-    if(sp > 0){
+void dupeTop() {
+    if (sp > 0) {
         double addition = val[sp - 1];
         val[sp++] = addition;
         puts("Top element duplicate top element");
-    }
-    else {
+    } else {
         puts("error: stack empty\n");
     }
 }
 
 //4-4 print top element without removing
-void peek(){
-    if(sp > 0)
+void peek() {
+    if (sp > 0)
         printf("Top element: %g", val[sp - 1]);
     else {
         puts("error: stack empty\n");

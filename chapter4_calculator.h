@@ -5,7 +5,7 @@
 #ifndef TEST_CHAPTER4_CALCULATOR_H
 #define TEST_CHAPTER4_CALCULATOR_H
 
-#define BUFSIZE 100
+#define BUFSIZE 1
 #define MAXVAL 100
 #define NUMBER '0'
 #define NEGNUMBER '1'
@@ -17,8 +17,9 @@
 #include "ctype.h"
 
 int getch();
+int checkLine(char s[]);
 void ungetch(int c);
-int getop(char s[]);
+int getop(char s[], double* parsed);
 void push(double f);
 double pop();
 

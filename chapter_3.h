@@ -16,8 +16,8 @@ void unescape(char s[], char t[]);
 void expand(char s1[], char s2[]);
 
 //3-4
-void itoa(int n, char s[]);
-void reverse(char s[]);
+//void itoa(int n, char s[]);
+void reverseIterative(char s[]);
 
 //3-5
 void itob(int n, char s[], int b);

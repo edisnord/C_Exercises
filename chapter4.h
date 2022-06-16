@@ -9,7 +9,13 @@
 //4-1
 int strindex(const char s[], const char t[]);
 
+//4-12
+void recursiveitoa(char a[], int num ,int count);
+
+//4-13
+void reverse(char** string);
+
 //4-2
-float atof(char s[]);
+//float atof(char s[]);
 
 #endif //TEST_CHAPTER4_H

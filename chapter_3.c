@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-void reverse(char s[]) {
+void reverseIterative(char s[]) {
     int c, i, j;
     for ( i = 0, j = strlen(s)-1; i < j; i++, j--) {
         c = s[i];
@@ -98,18 +98,18 @@ void expand(char s1[], char s2[]){
     s2[s2index] = '\0';
 }
 
-void itoa(int n, char s[]){
-    int i, sign;
-    sign = n;
-    do{
-        s[i++] = abs(n % 10) + '0';
-    } while (n /= 10);
-
-    if(sign < 0){
-        s[i++] = '-';
-    }
-    s[i] = '\0';
-}
+//void itoa(int n, char s[]){
+//    int i, sign;
+//    sign = n;
+//    do{
+//        s[i++] = abs(n % 10) + '0';
+//    } while (n /= 10);
+//
+//    if(sign < 0){
+//        s[i++] = '-';
+//    }
+//    s[i] = '\0';
+//}
 
 void itob(int n, char s[], int b){
     int helper, values, remainder;

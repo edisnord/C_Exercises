@@ -6,7 +6,5 @@
 #include "math.h"
 
 int main(){
-    char* s = "astrit rikmodhi";
-    reverse(&s);
-    puts(s);
+
 }

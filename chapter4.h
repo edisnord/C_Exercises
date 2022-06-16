@@ -6,6 +6,13 @@
 #define TEST_CHAPTER4_H
 #include <ctype.h>
 
+//4-14
+#define SWAP(t, x, y) {\
+                    t temp = *x;\
+                    *x = *y;\
+                    *y = temp;\
+                }
+
 //4-1
 int strindex(const char s[], const char t[]);
 

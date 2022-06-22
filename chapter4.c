@@ -72,6 +72,7 @@ void reverse(char **string) {
     char *temp = (char *) malloc((len1 + len2) * sizeof(char));
     strcpy(temp, *string);
     strcpy(temp + len1 + 1, *string + len1 + 1);
+    free(*string);
     *string = temp;
 
     //Krijo placeholder per string mbrapa string

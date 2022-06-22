@@ -109,6 +109,12 @@ build CMakeFiles/Test.dir/chapter4_calculator.c.obj: C_COMPILER__Test_Debug C$:/
   OBJECT_DIR = CMakeFiles\Test.dir
   OBJECT_FILE_DIR = CMakeFiles\Test.dir
 
+build CMakeFiles/Test.dir/chapter5.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/chapter5.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles\Test.dir\chapter5.c.obj.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles\Test.dir
+  OBJECT_FILE_DIR = CMakeFiles\Test.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Test
@@ -117,7 +123,7 @@ build CMakeFiles/Test.dir/chapter4_calculator.c.obj: C_COMPILER__Test_Debug C$:/
 #############################################
 # Link the executable Test.exe
 
-build Test.exe: C_EXECUTABLE_LINKER__Test_Debug CMakeFiles/Test.dir/Bit-Related_exercises/setbits.c.obj CMakeFiles/Test.dir/main.c.obj CMakeFiles/Test.dir/Bit-Related_exercises/invert.c.obj CMakeFiles/Test.dir/Bit-Related_exercises/basic_operations_bit.c.obj CMakeFiles/Test.dir/Bit-Related_exercises/rightRot.c.obj CMakeFiles/Test.dir/Bit-Related_exercises/bitCount.c.obj CMakeFiles/Test.dir/Char-related_exercises/lower.c.obj CMakeFiles/Test.dir/chapter_3.c.obj CMakeFiles/Test.dir/chapter4.c.obj CMakeFiles/Test.dir/chapter4_calculator.c.obj
+build Test.exe: C_EXECUTABLE_LINKER__Test_Debug CMakeFiles/Test.dir/Bit-Related_exercises/setbits.c.obj CMakeFiles/Test.dir/main.c.obj CMakeFiles/Test.dir/Bit-Related_exercises/invert.c.obj CMakeFiles/Test.dir/Bit-Related_exercises/basic_operations_bit.c.obj CMakeFiles/Test.dir/Bit-Related_exercises/rightRot.c.obj CMakeFiles/Test.dir/Bit-Related_exercises/bitCount.c.obj CMakeFiles/Test.dir/Char-related_exercises/lower.c.obj CMakeFiles/Test.dir/chapter_3.c.obj CMakeFiles/Test.dir/chapter4.c.obj CMakeFiles/Test.dir/chapter4_calculator.c.obj CMakeFiles/Test.dir/chapter5.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lm  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Test.dir

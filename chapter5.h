@@ -6,6 +6,8 @@
 #define TEST_CHAPTER5_H
 #include "stdio.h"
 
+//5-1 & 5-2 are boring
+
 //5-3 strcat
 char* strcat_edis(char* a, char* b);
 
@@ -21,5 +23,11 @@ int strncmp_edis(char* a, char* b, int n);
 //reverse already uses pointers in the recursive version
 int strindex_ptr(char s[], char t[]);
 int getline_ptr(char s[],int lim);
+
+//5-7 & 5-8 are boring
+
+//5-9
+void month_day(int year, int yearday, int *pmonth, int *pday);
+int day_of_year(int year, int month, int day);
 
 #endif //TEST_CHAPTER5_H

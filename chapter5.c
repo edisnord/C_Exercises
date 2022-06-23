@@ -5,6 +5,11 @@
 #include "chapter5.h"
 #include "string.h"
 
+static char daytab[2][13] = {
+        {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
+        {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+};
+
 //5-3 strcat
 char* strcat_edis(char* a, char* b)
 {
@@ -71,7 +76,7 @@ int getline_ptr(char s[],int lim)
 {
     int c, i;
     char* init = s;
-    while (c=getchar())!=EOF && c!='\n')
+    while ((c=getchar())!=EOF && c!='\n')
         *s++ = c;
     if (c == '\n') {
         *s++ = c;
@@ -80,4 +85,26 @@ int getline_ptr(char s[],int lim)
     *s = '\0';
     s = s - (s - init);
     return i;
+}
+
+void month_day(int year, int yearday, int *pmonth, int *pday)
+{
+    int leap = year%4 == 0 && year%100 != 0 || year%400 == 0;
+    char* initDays = *(daytab + leap);
+    char* days = *(daytab + leap);
+    while (yearday > *days)
+        yearday -= *days++;
+    *pmonth = days - initDays;
+    *pday = yearday;
+}
+
+int day_of_year(int year, int month, int day)
+{
+    int leap;
+    leap = year%4 == 0 && year%100 != 0 || year%400 == 0;
+    char* days = *(daytab + leap);
+    char* topDays = *(daytab+leap) + month;
+    while (days != topDays)
+        day += *days++;
+    return day;
 }

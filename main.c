@@ -8,6 +8,8 @@
 #include "math.h"
 
 int main(){
-
+    int a, b;
+    month_day(1988, 60, &a, &b);
+    printf("%d", day_of_year(1988, 2, 2));
 }
 

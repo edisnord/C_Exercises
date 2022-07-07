@@ -1,15 +1,18 @@
 #include "stdio.h"
 #include "stdlib.h"
-#include "string.h"
-#include "main.h"
-#include "chapter4_calculator.h"
-#include "chapter4.h"
-#include "chapter5.h"
-#include "math.h"
+#include "curl/curl.h"
+#include "glad.h"
+#include "GLFW/glfw3.h"
+// Driver code
+int main()
+{
+    char *types[7] = {
+            "int", "char", "struct", "enum", "double", "float", "union"
+    };
 
-int main(){
-    int a, b;
-    month_day(1988, 60, &a, &b);
-    printf("%d", day_of_year(1988, 2, 2));
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    GLFWwindow* window = glfwCreateWindow(1200, 720, "Test", NULL, NULL);
+    return 0;
 }
-

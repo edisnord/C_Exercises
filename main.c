@@ -3,7 +3,7 @@
 int main(){
 
     char* a = malloc(1000 * sizeof(char));
-    strcpy(a, "  asdwf,-,-|_ \"\"");
+    strcpy(a, "  asdwf  ");
     cleanName(&a);
     puts(a);
 

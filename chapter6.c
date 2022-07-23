@@ -1,9 +1,9 @@
 #include <ctype.h>
 #include "chapter6.h"
 
-char keywords[13][8] = {"auto", "char", "int", "long", "short", "const",
-                        "enum", "volatile", "restrict" ,"float", "double", "register",
-                        "static"};
+char keywords[14][8] = {"auto", "char", "const","double","enum","float","int", "long",
+                        "register","restrict", "short",
+                        "static", "void", "volatile"};
 
 void parseDecl(char *filepath, int chars) {
     char **statements = makeArray;
@@ -23,7 +23,7 @@ int getNames(char** tokens, char** names){
     int i;
     int j;
     for (i = 0; tokens[i] != NULL; ++i) {
-        if(!isKeyword(0, 12, tokens[i])){
+        if(!isKeyword(0, 13, tokens[i])){
             if(i == 0)
                 return 0;
             else
@@ -33,10 +33,13 @@ int getNames(char** tokens, char** names){
 
     for(j = 0; tokens[i] != NULL; ++i){
         if(!strcmp(*(tokens+i), "=")) break;
-        cleanName(tokens+i);
-        if(strlen(*(tokens+i)) == 0) continue;
-        names[j] = malloc(1000 * sizeof(char));
-        strcpy(names[j++], tokens[i]);
+        if(cleanName(tokens+i)){
+            if(strlen(*(tokens+i)) == 0) continue;
+            names[j] = malloc(1000 * sizeof(char));
+            strcpy(names[j++], tokens[i]);
+        } else {
+            break;
+        }
     }
 
     return j;
@@ -138,10 +141,10 @@ int isKeyword( int l, int r, char* x)
     if (r >= l) {
         int mid = l + (r - l) / 2;
 
-        if (strcmp(keywords[mid], x) == 0)
+        if (strcmp(x,keywords[mid]) == 0)
             return true;
 
-        if (strcmp(keywords[mid], x) < 0)
+        if (strcmp(x,keywords[mid]) < 0)
             return isKeyword(l, mid - 1, x);
 
         return isKeyword(mid + 1, r, x);
@@ -159,8 +162,13 @@ int cleanName(char** name){
     for (int i = 0; i < strlen(*name); ++i) {
         if(isValidNameChar(*(*name+i)))
             clean[j++] = *(*name+i);
+        else if(*(*name+i) == '(' && ( i != 0 || *(*name+i - 1) != '*' ))
+            return 0;
+        else if(*(*name+i) == '[')
+            break;
     }
     clean[j] = '\0';
     *name = clean;
+    return 1;
 }
 

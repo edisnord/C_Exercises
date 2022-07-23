@@ -21,7 +21,8 @@ void trim(char **string);
 void getVariableNames(char** statements, char** variables);
 int isKeyword( int l, int r, char* x);
 int isValidNameChar(char ch);
-void cleanName(char** name);
+int cleanName(char** name);
+int getNames(char** tokens, char** names);
 
 
 #endif //TEST_CHAPTER6_H

@@ -5,25 +5,6 @@ char keywords[13][8] = {"auto", "char", "int", "long", "short", "const",
                         "enum", "volatile", "restrict" ,"float", "double", "register",
                         "static"};
 
-
-int getNames(char** tokens, char** name){
-    int i;
-    for (i = 0; tokens[i] != NULL; ++i) {
-        if(!isKeyword(0, 12, tokens[i])){
-            if(i == 0)
-                return 0;
-            else
-                break;
-        }
-    }
-
-    for(; tokens[i] != NULL; ++i){
-        cleanName(tokens+i);
-
-    }
-
-}
-
 void parseDecl(char *filepath, int chars) {
     char **statements = makeArray;
     char **variables = makeArray;
@@ -35,6 +16,30 @@ void parseDecl(char *filepath, int chars) {
     readStatements(statements, file);
     puts("File read completely!");
     getVariableNames(statements, variables);
+
+}
+
+int getNames(char** tokens, char** names){
+    int i;
+    int j;
+    for (i = 0; tokens[i] != NULL; ++i) {
+        if(!isKeyword(0, 12, tokens[i])){
+            if(i == 0)
+                return 0;
+            else
+                break;
+        }
+    }
+
+    for(j = 0; tokens[i] != NULL; ++i){
+        if(!strcmp(*(tokens+i), "=")) break;
+        cleanName(tokens+i);
+        if(strlen(*(tokens+i)) == 0) continue;
+        names[j] = malloc(1000 * sizeof(char));
+        strcpy(names[j++], tokens[i]);
+    }
+
+    return j;
 
 }
 
@@ -114,11 +119,16 @@ void tokenizeStatement(char* statement, char** tokens){
 
 void getVariableNames(char **statements, char **variables) {
     char** tokens = makeArray;
+    char** names = makeArray;
+    char** namesFirst = names;
     do{
         tokenizeStatement(*statements, tokens);
+        names = names + getNames(tokens, names);
 
+    }while(*(statements++ + 1) != NULL );
 
-    }while(statements++ + 1 != NULL );
+    puts("all names read!");
+
 }
 
 
@@ -131,7 +141,7 @@ int isKeyword( int l, int r, char* x)
         if (strcmp(keywords[mid], x) == 0)
             return true;
 
-        if (strcmp(keywords[mid], x) > 0)
+        if (strcmp(keywords[mid], x) < 0)
             return isKeyword(l, mid - 1, x);
 
         return isKeyword(mid + 1, r, x);
@@ -143,7 +153,7 @@ int isValidNameChar(char ch) {
     return (isalnum(ch) || ch == '_')?true:false;
 }
 
-void cleanName(char** name){
+int cleanName(char** name){
     int j = 0;
     char* clean = malloc(strlen(*name) * sizeof(char));
     for (int i = 0; i < strlen(*name); ++i) {

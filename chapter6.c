@@ -1,19 +1,40 @@
+#include <ctype.h>
 #include "chapter6.h"
 
-char keywords[16][8] = {"char", "int", "long", "short", "const",
-                        "enum", "auto", "volatile", "restrict", "float",
-                        "double", "register", "static"};
+char keywords[13][8] = {"auto", "char", "int", "long", "short", "const",
+                        "enum", "volatile", "restrict" ,"float", "double", "register",
+                        "static"};
+
+
+int getNames(char** tokens, char** name){
+    int i;
+    for (i = 0; tokens[i] != NULL; ++i) {
+        if(!isKeyword(0, 12, tokens[i])){
+            if(i == 0)
+                return 0;
+            else
+                break;
+        }
+    }
+
+    for(; tokens[i] != NULL; ++i){
+        cleanName(tokens+i);
+
+    }
+
+}
 
 void parseDecl(char *filepath, int chars) {
-    char** statements = malloc(sizeof (char*) * 10000);
+    char **statements = makeArray;
+    char **variables = makeArray;
     FILE *file = fopen(filepath, "r");
 
     if (file == NULL)
         return;
 
     readStatements(statements, file);
-
     puts("File read completely!");
+    getVariableNames(statements, variables);
 
 }
 
@@ -23,29 +44,38 @@ char **readStatements(char **statements, FILE *file) {
 
     while (fgetc(file) != '{') fgetc(file);
 
-    while(true){
+    while (true) {
         //Allocate space for statement
         statement = malloc(sizeof(char) * 1000);
         readStatement(file, statement);
-        if(feof(file)) break;   //Check EOF
-        statements[statementCnt] = malloc(strlen(statement) * sizeof(char ));
+        if (feof(file)) break;   //Check EOF
+        statements[statementCnt] = malloc(strlen(statement) * sizeof(char));
+        trim(&statement);
         strcpy(statements[statementCnt++], statement);
-        //Deallocate space for statement
-        free(statement);
     }
 }
 
 void readStatement(FILE *file, char *resultingStatement) {
     int charCnt = 0;
     int isSingleSpace = false;
-    char c;
+    int isParenth = false;
+    int is2ndParenth = false;
+    char c = 0;
 
     //skip any whitespaces and newlines
     while (c == ' ' || c == '\t' || c == '\n') c = fgetc(file);
 
-    while (c != ';') {
+    while (c != ';' || (c == ';' && isParenth)) {
         c = fgetc(file);
-        if(feof(file)) return;
+        if (feof(file)) return;
+
+        if (c == '(' && !isParenth) {
+            isParenth = true;
+        } else if (c == '(' && isParenth) {
+            is2ndParenth = true;
+        } else if (c == ')' && isParenth) {
+            isParenth = is2ndParenth;
+        }
 
         //Ignore more than 1 continuous space
         if ((c == ' ' || c == '\t') && isSingleSpace) {
@@ -55,7 +85,8 @@ void readStatement(FILE *file, char *resultingStatement) {
         else
             isSingleSpace = true;
 
-        if (c == '{' || c == '}' || c == '\n') continue;  //Skip curly brackets if found
+        if (c == '}' || c == '\n') continue;    //Skip curly brackets if found
+        else if (c == '{') break;    //Mark { as end of statement
 
         resultingStatement[charCnt++] = c;
 
@@ -63,42 +94,63 @@ void readStatement(FILE *file, char *resultingStatement) {
     resultingStatement[charCnt] = '\0';
 }
 
-//void readStatement(FILE *file, char **resultingStatements) {
-//    char *line = malloc(sizeof(char) * 1000);
-//    char *lineStart = line;
-//    char *resultingStatement = NULL;
-//    int isSingleSpace = false;
-//    int statementcnt = 0;
-//    char c;
-//    while (!feof(file)) {
-//        while (fgetc(file) != '{');
-//        c = fgetc(file);
-//        while (c == ' ' || c == '\t' || c == '\n')
-//            c = fgetc(file);
-//        ungetc(c, file);
-//        line = malloc(sizeof(char) * 1000);
-//        lineStart = line;
-//        for (c = fgetc(file); c != ';';) {
-//            if ((c == ' ' || c == '\t') && isSingleSpace) {
-//                continue;
-//            } else if ((c != ' ' && c != '\t'))
-//                isSingleSpace = false;
-//            else
-//                isSingleSpace = true;
-//            *line++ = c;
-//            resultingStatement =
-//                    realloc(resultingStatement, (1 + line - lineStart) * sizeof(char));
-//            resultingStatement[line - lineStart - 1] = c;
-//            c = fgetc(file);
-//        }
-//        *(resultingStatement + (++line - lineStart)) = '\0';
-//        char *placeHolderString = malloc(sizeof(char) * strlen(resultingStatement));
-//        strcpy(placeHolderString, resultingStatement);
-//        resultingStatements = realloc(resultingStatements, ++statementcnt * sizeof(char *));
-//        resultingStatements[statementcnt - 1] = placeHolderString;
-//        puts("Statement Parsed!");
-//        free(resultingStatement);
-//        resultingStatement = NULL;
-//    }
-//    puts("file read!");
-//}
+void trim(char **string) {
+    while (isspace(**string))
+        *string = *string + 1;
+    for (unsigned long int i = strlen(*string) - 1; isspace(*(*string+i)); --i)
+        *(*string+i) = '\0';
+}
+
+void tokenizeStatement(char* statement, char** tokens){
+    char* temp;
+    int tokcnt = 0;
+    for(char* i = strtok(statement, " "); i != NULL ; i = strtok(NULL, " ")){
+        tokens[tokcnt] = malloc(1000 * sizeof(char));
+        temp = malloc(1000 * sizeof(char));
+        strcpy(temp, i);
+        strcpy(tokens[tokcnt++], temp);
+    }
+}
+
+void getVariableNames(char **statements, char **variables) {
+    char** tokens = makeArray;
+    do{
+        tokenizeStatement(*statements, tokens);
+
+
+    }while(statements++ + 1 != NULL );
+}
+
+
+//Binary search to see if token is keyword
+int isKeyword( int l, int r, char* x)
+{
+    if (r >= l) {
+        int mid = l + (r - l) / 2;
+
+        if (strcmp(keywords[mid], x) == 0)
+            return true;
+
+        if (strcmp(keywords[mid], x) > 0)
+            return isKeyword(l, mid - 1, x);
+
+        return isKeyword(mid + 1, r, x);
+    }
+    return false;
+}
+
+int isValidNameChar(char ch) {
+    return (isalnum(ch) || ch == '_')?true:false;
+}
+
+void cleanName(char** name){
+    int j = 0;
+    char* clean = malloc(strlen(*name) * sizeof(char));
+    for (int i = 0; i < strlen(*name); ++i) {
+        if(isValidNameChar(*(*name+i)))
+            clean[j++] = *(*name+i);
+    }
+    clean[j] = '\0';
+    *name = clean;
+}
+

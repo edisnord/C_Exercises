@@ -2,6 +2,11 @@
 
 int main(){
 
+    char* a = malloc(1000 * sizeof(char));
+    strcpy(a, "  asdwf,-,-|_ \"\"");
+    cleanName(&a);
+    puts(a);
+
     parseDecl("../chapter_3.c", 0);
 
 }

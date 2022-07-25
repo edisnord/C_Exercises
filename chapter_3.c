@@ -4,7 +4,7 @@
 #include <math.h>
 
 void reverseIterative(char s[]) {
-    int c, i, j;
+    int c, i, j; //ABAP aaaaaa
     for ( i = 0, j = strlen(s)-1; i < j; i++, j--) {
         c = s[i];
         s[i] = s[j];
@@ -82,14 +82,14 @@ void expand(char s1[], char s2[]){
             s2[s2index++] = s1[i];
         } else {
             char upperbound;
-            int multi = 0;
+            int milti = 0;
             for (int j = i + 1; s1[j] == '-'; j = j + 2) {
-                multi += 1;
+                milti += 1;
                 upperbound = s1[j + 1];
             }
-            if(!multi) upperbound = s1[i];
-            i=i + 2 * multi;
-            for (int j = s1[i - 2 * multi]; j <= upperbound; ++j) {
+            if(!milti) upperbound = s1[i];
+            i=i + 2 * milti;
+            for (int j = s1[i - 2 * milti]; j <= upperbound; ++j) {
                 s2[s2index++] = j;
             }
 
@@ -131,6 +131,6 @@ void itoa2(int n, char s[], int fieldWidth){
             s[i++] = ' ';
         }
     }
-    reverse(s);
+    //reverse(s);
     s[strlen(s)] = '\0';
 }

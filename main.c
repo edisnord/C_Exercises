@@ -7,7 +7,7 @@ int main(){
     cleanName(&a);
     puts(a);
 
-    parseDecl("../chapter_3.c", 0);
+    parseDecl("../chapter_3.c", 2);
 
 }
 

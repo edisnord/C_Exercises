@@ -1,4 +1,4 @@
-﻿// DoublyLinkedList.h : Include file for standard system include files,
+﻿// DataStructures.h : Include file for standard system include files,
 // or project specific include files.
 
 #ifndef DOUBLY_LIST

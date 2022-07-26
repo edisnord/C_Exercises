@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/cmake-build-debug/
+cmake_ninja_workdir = /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target Test
 
@@ -49,71 +49,83 @@ cmake_ninja_workdir = C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/cmake-buil
 
 build cmake_object_order_depends_target_Test: phony || CMakeFiles/Test.dir
 
-build CMakeFiles/Test.dir/Bit-Related_exercises/setbits.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/Bit-Related$ exercises/setbits.c || cmake_object_order_depends_target_Test
-  DEP_FILE = CMakeFiles\Test.dir\Bit-Related_exercises\setbits.c.obj.d
+build CMakeFiles/Test.dir/Bit-Related_exercises/setbits.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/Bit-Related$ exercises/setbits.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/Bit-Related_exercises/setbits.c.o.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Test.dir
-  OBJECT_FILE_DIR = CMakeFiles\Test.dir\Bit-Related_exercises
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir/Bit-Related_exercises
 
-build CMakeFiles/Test.dir/main.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/main.c || cmake_object_order_depends_target_Test
-  DEP_FILE = CMakeFiles\Test.dir\main.c.obj.d
+build CMakeFiles/Test.dir/main.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/main.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/main.c.o.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Test.dir
-  OBJECT_FILE_DIR = CMakeFiles\Test.dir
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir
 
-build CMakeFiles/Test.dir/Bit-Related_exercises/invert.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/Bit-Related$ exercises/invert.c || cmake_object_order_depends_target_Test
-  DEP_FILE = CMakeFiles\Test.dir\Bit-Related_exercises\invert.c.obj.d
+build CMakeFiles/Test.dir/Bit-Related_exercises/invert.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/Bit-Related$ exercises/invert.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/Bit-Related_exercises/invert.c.o.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Test.dir
-  OBJECT_FILE_DIR = CMakeFiles\Test.dir\Bit-Related_exercises
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir/Bit-Related_exercises
 
-build CMakeFiles/Test.dir/Bit-Related_exercises/basic_operations_bit.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/Bit-Related$ exercises/basic_operations_bit.c || cmake_object_order_depends_target_Test
-  DEP_FILE = CMakeFiles\Test.dir\Bit-Related_exercises\basic_operations_bit.c.obj.d
+build CMakeFiles/Test.dir/Bit-Related_exercises/basic_operations_bit.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/Bit-Related$ exercises/basic_operations_bit.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/Bit-Related_exercises/basic_operations_bit.c.o.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Test.dir
-  OBJECT_FILE_DIR = CMakeFiles\Test.dir\Bit-Related_exercises
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir/Bit-Related_exercises
 
-build CMakeFiles/Test.dir/Bit-Related_exercises/rightRot.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/Bit-Related$ exercises/rightRot.c || cmake_object_order_depends_target_Test
-  DEP_FILE = CMakeFiles\Test.dir\Bit-Related_exercises\rightRot.c.obj.d
+build CMakeFiles/Test.dir/Bit-Related_exercises/rightRot.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/Bit-Related$ exercises/rightRot.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/Bit-Related_exercises/rightRot.c.o.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Test.dir
-  OBJECT_FILE_DIR = CMakeFiles\Test.dir\Bit-Related_exercises
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir/Bit-Related_exercises
 
-build CMakeFiles/Test.dir/Bit-Related_exercises/bitCount.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/Bit-Related$ exercises/bitCount.c || cmake_object_order_depends_target_Test
-  DEP_FILE = CMakeFiles\Test.dir\Bit-Related_exercises\bitCount.c.obj.d
+build CMakeFiles/Test.dir/Bit-Related_exercises/bitCount.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/Bit-Related$ exercises/bitCount.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/Bit-Related_exercises/bitCount.c.o.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Test.dir
-  OBJECT_FILE_DIR = CMakeFiles\Test.dir\Bit-Related_exercises
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir/Bit-Related_exercises
 
-build CMakeFiles/Test.dir/Char-related_exercises/lower.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/Char-related$ exercises/lower.c || cmake_object_order_depends_target_Test
-  DEP_FILE = CMakeFiles\Test.dir\Char-related_exercises\lower.c.obj.d
+build CMakeFiles/Test.dir/Char-related_exercises/lower.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/Char-related$ exercises/lower.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/Char-related_exercises/lower.c.o.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Test.dir
-  OBJECT_FILE_DIR = CMakeFiles\Test.dir\Char-related_exercises
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir/Char-related_exercises
 
-build CMakeFiles/Test.dir/chapter_3.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/chapter_3.c || cmake_object_order_depends_target_Test
-  DEP_FILE = CMakeFiles\Test.dir\chapter_3.c.obj.d
+build CMakeFiles/Test.dir/chapter_3.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/chapter_3.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/chapter_3.c.o.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Test.dir
-  OBJECT_FILE_DIR = CMakeFiles\Test.dir
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir
 
-build CMakeFiles/Test.dir/chapter4.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/chapter4.c || cmake_object_order_depends_target_Test
-  DEP_FILE = CMakeFiles\Test.dir\chapter4.c.obj.d
+build CMakeFiles/Test.dir/chapter4.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/chapter4.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/chapter4.c.o.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Test.dir
-  OBJECT_FILE_DIR = CMakeFiles\Test.dir
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir
 
-build CMakeFiles/Test.dir/chapter4_calculator.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/chapter4_calculator.c || cmake_object_order_depends_target_Test
-  DEP_FILE = CMakeFiles\Test.dir\chapter4_calculator.c.obj.d
+build CMakeFiles/Test.dir/chapter4_calculator.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/chapter4_calculator.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/chapter4_calculator.c.o.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Test.dir
-  OBJECT_FILE_DIR = CMakeFiles\Test.dir
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir
 
-build CMakeFiles/Test.dir/chapter5.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$ Hasaj/CLionProjects/C_Exercises/chapter5.c || cmake_object_order_depends_target_Test
-  DEP_FILE = CMakeFiles\Test.dir\chapter5.c.obj.d
+build CMakeFiles/Test.dir/chapter5.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/chapter5.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/chapter5.c.o.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Test.dir
-  OBJECT_FILE_DIR = CMakeFiles\Test.dir
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir
+
+build CMakeFiles/Test.dir/chapter6.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/chapter6.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/chapter6.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir
+
+build CMakeFiles/Test.dir/DataStructures/set.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/DataStructures/set.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/DataStructures/set.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir/DataStructures
 
 
 # =============================================================================
@@ -123,12 +135,13 @@ build CMakeFiles/Test.dir/chapter5.c.obj: C_COMPILER__Test_Debug C$:/Users/Edis$
 #############################################
 # Link the executable Test.exe
 
-build Test.exe: C_EXECUTABLE_LINKER__Test_Debug CMakeFiles/Test.dir/Bit-Related_exercises/setbits.c.obj CMakeFiles/Test.dir/main.c.obj CMakeFiles/Test.dir/Bit-Related_exercises/invert.c.obj CMakeFiles/Test.dir/Bit-Related_exercises/basic_operations_bit.c.obj CMakeFiles/Test.dir/Bit-Related_exercises/rightRot.c.obj CMakeFiles/Test.dir/Bit-Related_exercises/bitCount.c.obj CMakeFiles/Test.dir/Char-related_exercises/lower.c.obj CMakeFiles/Test.dir/chapter_3.c.obj CMakeFiles/Test.dir/chapter4.c.obj CMakeFiles/Test.dir/chapter4_calculator.c.obj CMakeFiles/Test.dir/chapter5.c.obj
+build Test.exe: C_EXECUTABLE_LINKER__Test_Debug CMakeFiles/Test.dir/Bit-Related_exercises/setbits.c.o CMakeFiles/Test.dir/main.c.o CMakeFiles/Test.dir/Bit-Related_exercises/invert.c.o CMakeFiles/Test.dir/Bit-Related_exercises/basic_operations_bit.c.o CMakeFiles/Test.dir/Bit-Related_exercises/rightRot.c.o CMakeFiles/Test.dir/Bit-Related_exercises/bitCount.c.o CMakeFiles/Test.dir/Char-related_exercises/lower.c.o CMakeFiles/Test.dir/chapter_3.c.o CMakeFiles/Test.dir/chapter4.c.o CMakeFiles/Test.dir/chapter4_calculator.c.o CMakeFiles/Test.dir/chapter5.c.o CMakeFiles/Test.dir/chapter6.c.o CMakeFiles/Test.dir/DataStructures/set.c.o
   FLAGS = -g
-  LINK_LIBRARIES = -lm  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\Test.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
+  LINK_FLAGS = -Wl,--enable-auto-import
+  LINK_LIBRARIES = -lm
+  OBJECT_DIR = CMakeFiles/Test.dir
+  POST_BUILD = :
+  PRE_LINK = :
   TARGET_FILE = Test.exe
   TARGET_IMPLIB = libTest.dll.a
   TARGET_PDB = Test.exe.dbg
@@ -138,7 +151,7 @@ build Test.exe: C_EXECUTABLE_LINKER__Test_Debug CMakeFiles/Test.dir/Bit-Related_
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "C:\Users\Edis Hasaj\CLionProjects\C_Exercises\cmake-build-debug" && "C:\Users\Edis Hasaj\AppData\Local\JetBrains\CLion 2022.1.1\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cd "/cygdrive/c/Users/Edis Hasaj/CLionProjects/C_Exercises/cmake-build-debug" && "/cygdrive/c/Users/Edis Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/bin/cmake.exe" -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -149,7 +162,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "C:\Users\Edis Hasaj\CLionProjects\C_Exercises\cmake-build-debug" && "C:\Users\Edis Hasaj\AppData\Local\JetBrains\CLion 2022.1.1\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S"C:\Users\Edis Hasaj\CLionProjects\C_Exercises" -B"C:\Users\Edis Hasaj\CLionProjects\C_Exercises\cmake-build-debug""
+  COMMAND = cd "/cygdrive/c/Users/Edis Hasaj/CLionProjects/C_Exercises/cmake-build-debug" && "/cygdrive/c/Users/Edis Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/bin/cmake.exe" --regenerate-during-build -S"/cygdrive/c/Users/Edis Hasaj/CLionProjects/C_Exercises" -B"/cygdrive/c/Users/Edis Hasaj/CLionProjects/C_Exercises/cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -167,7 +180,7 @@ build Test: phony Test.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Edis Hasaj/CLionProjects/C_Exercises/cmake-build-debug
+# Folder: /cygdrive/c/Users/Edis Hasaj/CLionProjects/C_Exercises/cmake-build-debug
 
 build all: phony Test.exe
 
@@ -178,14 +191,14 @@ build all: phony Test.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeCInformation.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeGenericSystem.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeRCInformation.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Compiler/GNU-C.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Compiler/GNU.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-GNU-C.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-GNU.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-windres.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.22.3/CMakeCCompiler.cmake CMakeFiles/3.22.3/CMakeRCCompiler.cmake CMakeFiles/3.22.3/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeCInformation.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeCommonLanguageInclude.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeGenericSystem.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeInitializeConfigs.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeLanguageInformation.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeRCInformation.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeSystemSpecificInformation.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeSystemSpecificInitialize.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Compiler/CMakeCommonCompilerMacros.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Compiler/Clang-C.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Compiler/Clang.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Compiler/GNU.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Platform/CYGWIN-Clang-C.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Platform/CYGWIN-GNU-C.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Platform/CYGWIN-GNU.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Platform/CYGWIN-windres.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Platform/CYGWIN.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.22.3/CMakeCCompiler.cmake CMakeFiles/3.22.3/CMakeRCCompiler.cmake CMakeFiles/3.22.3/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeCInformation.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeGenericSystem.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeRCInformation.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Compiler/GNU-C.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Compiler/GNU.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-GNU-C.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-GNU.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-windres.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows.cmake C$:/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion$ 2022.1.1/bin/cmake/win/share/cmake-3.22/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.22.3/CMakeCCompiler.cmake CMakeFiles/3.22.3/CMakeRCCompiler.cmake CMakeFiles/3.22.3/CMakeSystem.cmake: phony
+build ../CMakeLists.txt /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeCInformation.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeCommonLanguageInclude.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeGenericSystem.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeInitializeConfigs.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeLanguageInformation.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeRCInformation.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeSystemSpecificInformation.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/CMakeSystemSpecificInitialize.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Compiler/CMakeCommonCompilerMacros.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Compiler/Clang-C.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Compiler/Clang.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Compiler/GNU.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Platform/CYGWIN-Clang-C.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Platform/CYGWIN-GNU-C.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Platform/CYGWIN-GNU.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Platform/CYGWIN-windres.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Platform/CYGWIN.cmake /cygdrive/c/Users/Edis$ Hasaj/AppData/Local/JetBrains/CLion2022.1/cygwin_cmake/share/cmake-3.22.3/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.22.3/CMakeCCompiler.cmake CMakeFiles/3.22.3/CMakeRCCompiler.cmake CMakeFiles/3.22.3/CMakeSystem.cmake: phony
 
 
 #############################################

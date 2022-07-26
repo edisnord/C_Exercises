@@ -1,4 +1,4 @@
-﻿// DoublyLinkedList.cpp : Defines the entry point for the application.
+﻿// DataStructures.cpp : Defines the entry point for the application.
 //
 
 #include "DoublyLinkedList.h"

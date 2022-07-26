@@ -44,24 +44,46 @@ int insertTraversal(node *setNode, node *node) {
 }
 
 int rotateLeft(node *node) {
-    struct node* parent = node->parent;
-
+    struct node* nodes[3] = {node->parent, node->parent->left, node->parent->right};
+    node->parent = nodes[0]->parent;
+    nodes[0]->parent = node;
+    //Could be normal insert te nodes[0], idk
+    insertTraversal(nodes[0], node->left);
+    node->left = nodes[0];
 }
 
-int replaceNodes(node *node1, node* node2){
+int replaceNode(node *node1, node* node2){
 
 }
 
 int rotateRight(node *node) {
-
+    struct node* nodes[3] = {node->parent, node->parent->left, node->parent->right};
+    node->parent = nodes[0]->parent;
+    nodes[0]->parent = node;
+    //Could be normal insert te nodes[0], idk
+    insertTraversal(nodes[0], node->right);
+    node->right = nodes[0];
 }
 
-int computeHeight(set *set, node *node) {
 
-}
+node *search(node *setNode, node *node) {
+    if (strcmp(setNode->value, node->value) > 0) {
+        if (setNode->left != NULL)
+            return search(setNode->left, node);
+        else {
+            return NULL;
+        }
 
-node *search(set *set, node *node) {
+    } else if (strcmp(setNode->value, node->value) < 0) {
+        if (setNode->right != NULL)
+            return search(setNode->right, node);
+        else {
+            return NULL;
+        }
 
+    } else if (strcmp(setNode->value, node->value) == 0) {
+        return node;
+    }
 }
 
 int removeNode(set *set, node *node) {

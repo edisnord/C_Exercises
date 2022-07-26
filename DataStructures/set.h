@@ -26,8 +26,9 @@ int insertTraversal(node* setNode, node* node);
 int rotateLeft(node *node);
 int rotateRight(node *node);
 int computeHeight(set* set, node* node);
-node * search(set* set, node* node);
+node * search(node *setNode, node* node);
 int removeNode(set* set, node* node);
 int checkViolations(node *node);
+int replaceNode(node *node1, node* node2);
 
 #endif //TEST_SET_H

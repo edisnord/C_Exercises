@@ -76,7 +76,7 @@ void addBefore(DoublyLinkedList* list, DoublyLinkedNode* node, DoublyLinkedNode*
 		prevNode->next = newNode;
 	}
 	else {
-		printf("%s", "Node you wish to insert element behind of doesn't exist");
+		printf("%s", "Node you wish to insertSet element behind of doesn't exist");
 	}
 }
 
@@ -104,7 +104,7 @@ void addAfter(DoublyLinkedList* list, DoublyLinkedNode* node, DoublyLinkedNode* 
 
 	}
 	else {
-		printf("%s", "Node you wish to insert element after doesn't exist");
+		printf("%s", "Node you wish to insertSet element after doesn't exist");
 	}
 }
 

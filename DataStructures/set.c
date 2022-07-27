@@ -65,31 +65,23 @@ int insertTraversal(node *setNode, node *node) {
 }
 
 int rotateLeft(node *node) {
-    if (node->parent == NULL) {
-        perror("Node to rotate is parentless");
-    }
-    struct node *parent = node->parent;
-    node->parent = parent->parent;
-    parent->parent = node;
-    //Could be normal insertSet te parent[0], idk
-    insertTraversal(parent, node->left);
-    if (checkViolation(parent))
-        fixViolations(parent);
-    node->left = parent;
+    struct node *child = node->left;
+    struct node *leftChild = child->left;
+    child->parent = node->parent;
+    child->left = node->parent;
+    insertTraversal(child->parent, leftChild);
+    if (checkViolation(leftChild))
+        fixViolations(leftChild);
 }
 
 int rotateRight(node *node) {
-    if (node->parent == NULL) {
-        perror("Node to rotate is parentless");
-    }
-    struct node *parent = node->parent;
-    node->parent = parent->parent;
-    parent->parent = node;
-    //Could be normal insertSet te parent[0], idk
-    insertTraversal(parent, node->right);
-    if (checkViolation(parent))
-        fixViolations(parent);
-    node->right = parent;
+    struct node *child = node->left;
+    struct node *rightChild = child->right;
+    child->parent = node->parent;
+    child->right = node->parent;
+    insertTraversal(child->parent, rightChild);
+    if (checkViolation(rightChild))
+        fixViolations(rightChild);
 }
 
 node *searchSet(node *setNode, char *string) {
@@ -132,7 +124,7 @@ int fixViolations(node *node) {
         }
         case RIGHT_UNCLE_BLACK: {
             grandparent = node->parent->parent;
-            rotateRight(node->parent);
+            rotateRight(grandparent);
             short tempColor = node->parent->color;
             node->parent->color = grandparent->color;
             grandparent->color = tempColor;
@@ -147,7 +139,7 @@ int fixViolations(node *node) {
         }
         case LEFT_UNCLE_BLACK: {
             grandparent = node->parent->parent;
-            rotateLeft(node->parent);
+            rotateLeft(grandparent);
             short tempColor = node->parent->color;
             node->parent->color = grandparent->color;
             grandparent->color = tempColor;
@@ -174,16 +166,20 @@ int checkViolation(node *node) {
 
     if (node->parent->parent != NULL && node->parent->color == RED) {
         grandparent = node->parent->parent;
-        if (node->parent->parent->left == node->parent) {    //Case left child
-            if (grandparent->right->color == RED)
-                return RIGHT_UNCLE_RED;
-            else
-                return RIGHT_UNCLE_BLACK;
-        } else {
-            if (grandparent->left->color == RED)
-                return LEFT_UNCLE_RED;
-            else
-                return LEFT_UNCLE_BLACK;
+        if (grandparent->left != NULL) {
+            if (grandparent->left == node->parent && grandparent->right != NULL) {    //Case left child
+                if (grandparent->right->color == RED)
+                    return RIGHT_UNCLE_RED;
+                else
+                    return RIGHT_UNCLE_BLACK;
+            }
+        } else if (grandparent->right != NULL) {
+            if (grandparent->right == node->parent && grandparent->left != NULL) {
+                if (grandparent->left->color == RED)
+                    return LEFT_UNCLE_RED;
+                else
+                    return LEFT_UNCLE_BLACK;
+            }
         }
     } else {
         if (grandparent == NULL) return GRANDPARENT_NULL;

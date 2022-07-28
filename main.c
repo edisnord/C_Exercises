@@ -35,17 +35,17 @@ int main() {
 
     set set1 = {NULL, 0};
 
-    node *nodes[] = {newSetNode("Quick"),
-                     newSetNode("Brown"),
-                     newSetNode("The"),
-                     newSetNode("Fox"),
-                     newSetNode("Jumped"),
-                     newSetNode("Over"),
-                     newSetNode("The"),
-                     newSetNode("Shit"),
-                     newSetNode("Lazy"),
-                     newSetNode("Brown"),
-                     newSetNode("Dog")};
+    char *nodes[] = {"Quick",
+                     "Brown",
+                     "The",
+                     "Fox",
+                     "Jumped",
+                     "Over",
+                     "The",
+                     "Shit",
+                     "Lazy",
+                     "Brown",
+                     "Dog"};
 
     for (int i = 0; i < 10; ++i) {
         insertSet(&set1, nodes[i]);

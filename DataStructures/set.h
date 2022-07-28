@@ -26,9 +26,13 @@ typedef struct set {
     int height;
 } set;
 
+int getPositionRelativeToParent(node* node);
+
+node *newNullNode(node* parent);
+
 node* newSetNode(char *val);
 
-int insertSet(set *set, node *node);
+int insertSet(set *set, char *val);
 
 int insertTraversal(node *setNode, node *node);
 

@@ -9,22 +9,43 @@ enum colors {
 };
 
 enum violations {
-    NONE, RIGHT_UNCLE_RED, RIGHT_UNCLE_BLACK, LEFT_UNCLE_RED, LEFT_UNCLE_BLACK, GRANDPARENT_NULL
+    NONE, RIGHT_UNCLE_RED, RIGHT_UNCLE_BLACK, LEFT_UNCLE_RED, LEFT_UNCLE_BLACK, ROOT
 };
+
+enum positions {
+    L, R
+};
+
+int getPositionRelativeToParent(node *node) {
+    return node == node->parent->left ? L : R;
+}
+
+node *newNullNode(node *parent) {
+    node *nodePtr = malloc(sizeof(node));
+    nodePtr->value = NULL;
+    nodePtr->parent = parent;
+    nodePtr->left = NULL;
+    nodePtr->right = NULL;
+    nodePtr->color = BLACK;
+    return nodePtr;
+}
 
 //Returns pointer to heap-allocated node structure
 node *newSetNode(char *val) {
     node *nodePtr = malloc(sizeof(node));
-    nodePtr->value = malloc(sizeof(char) * strlen(val));
-    strcpy(nodePtr->value, val);
+    if(nodePtr == NULL){
+        fprintf(stderr, "No more MALLOC space!");
+    }
+    strcpy(nodePtr->value = malloc(sizeof(char) * strlen(val)), val);
     nodePtr->parent = NULL;
-    nodePtr->left = NULL;
-    nodePtr->right = NULL;
+    nodePtr->left = newNullNode(nodePtr);
+    nodePtr->right = newNullNode(nodePtr);
     nodePtr->color = RED;
     return nodePtr;
 }
 
-int insertSet(set *set, node *node) {
+int insertSet(set *set, char *val) {
+    node *node = newSetNode(val);
     if (set->root == NULL || set->height == 0) {
         node->color = BLACK;
         set->root = node;
@@ -41,18 +62,20 @@ int insertSet(set *set, node *node) {
 
 int insertTraversal(node *setNode, node *node) {
     if (strcmp(setNode->value, node->value) > 0) {
-        if (setNode->left != NULL)
+        if (setNode->left->value != NULL)
             return 1 + insertTraversal(setNode->left, node);
         else {
+            free(setNode->left);
             node->parent = setNode;
             setNode->left = node;
             return 1;
         }
 
     } else if (strcmp(setNode->value, node->value) < 0) {
-        if (setNode->right != NULL)
+        if (setNode->right->value != NULL)
             return 1 + insertTraversal(setNode->right, node);
         else {
+            free(setNode->right);
             node->parent = setNode;
             setNode->right = node;
             return 1;
@@ -69,9 +92,8 @@ int rotateLeft(node *node) {
     struct node *leftChild = child->left;
     child->parent = node->parent;
     child->left = node->parent;
+    if(leftChild != NULL)
     insertTraversal(child->parent, leftChild);
-    if (checkViolation(leftChild))
-        fixViolations(leftChild);
 }
 
 int rotateRight(node *node) {
@@ -79,21 +101,20 @@ int rotateRight(node *node) {
     struct node *rightChild = child->right;
     child->parent = node->parent;
     child->right = node->parent;
+    if(rightChild != NULL)
     insertTraversal(child->parent, rightChild);
-    if (checkViolation(rightChild))
-        fixViolations(rightChild);
 }
 
 node *searchSet(node *setNode, char *string) {
     if (strcmp(setNode->value, string) > 0) {
-        if (setNode->left != NULL)
+        if (setNode->left->value != NULL)
             return searchSet(setNode->left, string);
         else {
             return NULL;
         }
 
     } else if (strcmp(setNode->value, string) < 0) {
-        if (setNode->right != NULL)
+        if (setNode->right->value != NULL)
             return searchSet(setNode->right, string);
         else {
             return NULL;
@@ -114,35 +135,37 @@ int fixViolations(node *node) {
     if (node->parent == NULL) {
         node->color = BLACK;
     }
+
     switch (checkViolation(node)) {
         case RIGHT_UNCLE_RED: {
             grandparent = node->parent->parent;
-            grandparent->color = BLACK;
             grandparent->right->color = BLACK;
-            grandparent->color = RED;
+            if (grandparent->parent != NULL)
+                grandparent->color = RED;
+            node->parent->color = BLACK;
             break;
         }
         case RIGHT_UNCLE_BLACK: {
-            grandparent = node->parent->parent;
+            getPositionRelativeToParent(node) == R ? rotateLeft(node->parent) : rotateRight(node->parent);
             rotateRight(grandparent);
-            short tempColor = node->parent->color;
-            node->parent->color = grandparent->color;
-            grandparent->color = tempColor;
+            node->color = node->parent->color == RED ? BLACK : RED;
+            node->left->color = node->right->color = node->color == BLACK ? RED : BLACK;
             break;
         }
         case LEFT_UNCLE_RED: {
             grandparent = node->parent->parent;
-            grandparent->color = BLACK;
             grandparent->left->color = BLACK;
-            grandparent->color = RED;
+            if (grandparent->parent != NULL)
+                grandparent->color = RED;
+            node->parent->color = BLACK;
             break;
         }
         case LEFT_UNCLE_BLACK: {
             grandparent = node->parent->parent;
+            getPositionRelativeToParent(node) == R ? rotateLeft(node->parent) : rotateRight(node->parent);
             rotateLeft(grandparent);
-            short tempColor = node->parent->color;
-            node->parent->color = grandparent->color;
-            grandparent->color = tempColor;
+            node->color = node->parent->color == RED ? BLACK : RED;
+            node->left->color = node->right->color = node->color == BLACK ? RED : BLACK;
             break;
         }
     }
@@ -156,33 +179,51 @@ int fixViolations(node *node) {
  * 2 -> right uncle black
  * 3 -> left uncle red
  * 4 -> left uncle black
- * 5 -> grandfather is null
+ * 5 -> ROOT
  */
 int checkViolation(node *node) {
-    struct node *grandparent = NULL;
     if (node->parent == NULL) {
-        return GRANDPARENT_NULL;
+        return ROOT;
     }
-
-    if (node->parent->parent != NULL && node->parent->color == RED) {
-        grandparent = node->parent->parent;
-        if (grandparent->left != NULL) {
-            if (grandparent->left == node->parent && grandparent->right != NULL) {    //Case left child
-                if (grandparent->right->color == RED)
-                    return RIGHT_UNCLE_RED;
-                else
-                    return RIGHT_UNCLE_BLACK;
+    if (node->parent->color == BLACK) {
+        return NONE;
+    } else {
+        if (getPositionRelativeToParent(node->parent) == R) {
+            if (node->parent->parent->left->color == BLACK) {
+                return LEFT_UNCLE_BLACK;
+            } else {
+                return LEFT_UNCLE_RED;
             }
-        } else if (grandparent->right != NULL) {
-            if (grandparent->right == node->parent && grandparent->left != NULL) {
-                if (grandparent->left->color == RED)
-                    return LEFT_UNCLE_RED;
-                else
-                    return LEFT_UNCLE_BLACK;
+        } else if (getPositionRelativeToParent(node->parent) == L) {
+            if (node->parent->parent->right->color == BLACK) {
+                return RIGHT_UNCLE_BLACK;
+            } else {
+                return RIGHT_UNCLE_RED;
             }
         }
-    } else {
-        if (grandparent == NULL) return GRANDPARENT_NULL;
+        return NONE;
     }
+
+//
+//    if (node->parent->parent != NULL && node->parent->color == RED) {
+//        grandparent = node->parent->parent;
+//        if (grandparent->left != NULL) {
+//            if (grandparent->left == node->parent && grandparent->right != NULL) {    //Case left child
+//                if (grandparent->right->color == RED)
+//                    return RIGHT_UNCLE_RED;
+//                else
+//                    return RIGHT_UNCLE_BLACK;
+//            }
+//        } else if (grandparent->right != NULL) {
+//            if (grandparent->right == node->parent && grandparent->left != NULL) {
+//                if (grandparent->left->color == RED)
+//                    return LEFT_UNCLE_RED;
+//                else
+//                    return LEFT_UNCLE_BLACK;
+//            }
+//        }
+//    } else {
+//        if (grandparent == NULL) return ROOT;
+//    }
     return NONE;
 }

@@ -20,18 +20,8 @@
 //    }
 //}
 
-
-
 int main() {
 
-//    char* a = malloc(1000 * sizeof(char));
-//    strcpy(a, "  asdwf  ");
-//    //cleanName(&a);
-//    puts(a);
-//
-//    putc(strcmp("bbb", "aaa") + '0', stdout);
-
-    //parseDecl("../chapter_3.c", 2);
 
     set set1 = {NULL, 0};
 

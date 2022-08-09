@@ -16,6 +16,10 @@ enum positions {
     L, R
 };
 
+enum imbalances {
+    RR, RL, LL, LR
+};
+
 int getPositionRelativeToParent(node *node) {
     return node == node->parent->left ? L : R;
 }
@@ -33,7 +37,7 @@ node *newNullNode(node *parent) {
 //Returns pointer to heap-allocated node structure
 node *newSetNode(char *val) {
     node *nodePtr = malloc(sizeof(node));
-    if(nodePtr == NULL){
+    if (nodePtr == NULL) {
         fprintf(stderr, "No more MALLOC space!");
     }
     strcpy(nodePtr->value = malloc(sizeof(char) * strlen(val)), val);
@@ -87,22 +91,34 @@ int insertTraversal(node *setNode, node *node) {
 
 }
 
-int rotateLeft(node *node) {
-    struct node *child = node->left;
-    struct node *leftChild = child->left;
-    child->parent = node->parent;
-    child->left = node->parent;
-    if(leftChild != NULL)
-    insertTraversal(child->parent, leftChild);
+//Left rotation rooted at parameter node "root"
+node *rotateLeft(node *root) {
+    node *pivot = root->right;
+    if (getPositionRelativeToParent(root) == R)
+        root->parent->right = pivot;
+    else
+        root->parent->left = pivot;
+    root->right = pivot->left;
+    root->right->parent = root;
+    pivot->left = root;
+    pivot->parent = root->parent;
+    root->parent = pivot;
+    return pivot;
 }
 
-int rotateRight(node *node) {
-    struct node *child = node->left;
-    struct node *rightChild = child->right;
-    child->parent = node->parent;
-    child->right = node->parent;
-    if(rightChild != NULL)
-    insertTraversal(child->parent, rightChild);
+//Right rotation rooted at parameter root "root"
+node *rotateRight(node *root) {
+    node *pivot = root->left;
+    if (getPositionRelativeToParent(root) == R)
+        root->parent->right = pivot;
+    else
+        root->parent->left = pivot;
+    root->left = pivot->right;
+    root->left->parent = root;
+    pivot->right = root;
+    pivot->parent = root->parent;
+    root->parent = pivot;
+    return pivot;
 }
 
 node *searchSet(node *setNode, char *string) {
@@ -130,42 +146,63 @@ int removeSet(set *set, char *string) {
 }
 
 int fixViolations(node *node) {
-
     struct node *grandparent;
     if (node->parent == NULL) {
         node->color = BLACK;
+        return 1;
     }
 
     switch (checkViolation(node)) {
         case RIGHT_UNCLE_RED: {
             grandparent = node->parent->parent;
-            grandparent->right->color = BLACK;
+            grandparent->right->color = grandparent->right->color == BLACK ? RED : BLACK;
+            grandparent->left->color = grandparent->left->color == BLACK ? RED : BLACK;
+            //Check if it's a root node
             if (grandparent->parent != NULL)
-                grandparent->color = RED;
-            node->parent->color = BLACK;
+                grandparent->color = grandparent->color == BLACK ? RED : BLACK;
+            else
+                grandparent->color = BLACK;
+            fixViolations(grandparent);
             break;
         }
         case RIGHT_UNCLE_BLACK: {
-            getPositionRelativeToParent(node) == R ? rotateLeft(node->parent) : rotateRight(node->parent);
-            rotateRight(grandparent);
-            node->color = node->parent->color == RED ? BLACK : RED;
-            node->left->color = node->right->color = node->color == BLACK ? RED : BLACK;
+            struct node *newRoot;
+            grandparent = node->parent->parent;
+            if (checkImbalanceCategory(node, L) == LL) {
+                newRoot = rotateRight(grandparent);
+            } else {
+                rotateLeft(node->parent);
+                newRoot = rotateRight(grandparent);
+                newRoot->color = BLACK;
+                newRoot->left->color = newRoot->right->color = RED;
+            }
+            newRoot->color = BLACK;
+            newRoot->left->color = newRoot->right->color = RED;
             break;
         }
         case LEFT_UNCLE_RED: {
             grandparent = node->parent->parent;
-            grandparent->left->color = BLACK;
+            grandparent->right->color = grandparent->right->color == BLACK ? RED : BLACK;
+            grandparent->left->color = grandparent->left->color == BLACK ? RED : BLACK;
+            //Check if it's a root node
             if (grandparent->parent != NULL)
-                grandparent->color = RED;
-            node->parent->color = BLACK;
+                grandparent->color = grandparent->color == BLACK ? RED : BLACK;
+            else
+                grandparent->color = BLACK;
+            fixViolations(grandparent);
             break;
         }
         case LEFT_UNCLE_BLACK: {
+            struct node *newRoot;
             grandparent = node->parent->parent;
-            getPositionRelativeToParent(node) == R ? rotateLeft(node->parent) : rotateRight(node->parent);
-            rotateLeft(grandparent);
-            node->color = node->parent->color == RED ? BLACK : RED;
-            node->left->color = node->right->color = node->color == BLACK ? RED : BLACK;
+            if (checkImbalanceCategory(node, R) == RR)
+                newRoot = rotateLeft(grandparent);
+            else {
+                rotateRight(node->parent);
+                newRoot = rotateLeft(grandparent);
+            }
+            newRoot->color = BLACK;
+            newRoot->left->color = newRoot->right->color = RED;
             break;
         }
     }
@@ -184,10 +221,9 @@ int fixViolations(node *node) {
 int checkViolation(node *node) {
     if (node->parent == NULL) {
         return ROOT;
-    }
-    if (node->parent->color == BLACK) {
+    } else if (node->parent->color == BLACK)
         return NONE;
-    } else {
+    else {
         if (getPositionRelativeToParent(node->parent) == R) {
             if (node->parent->parent->left->color == BLACK) {
                 return LEFT_UNCLE_BLACK;
@@ -203,27 +239,20 @@ int checkViolation(node *node) {
         }
         return NONE;
     }
-
-//
-//    if (node->parent->parent != NULL && node->parent->color == RED) {
-//        grandparent = node->parent->parent;
-//        if (grandparent->left != NULL) {
-//            if (grandparent->left == node->parent && grandparent->right != NULL) {    //Case left child
-//                if (grandparent->right->color == RED)
-//                    return RIGHT_UNCLE_RED;
-//                else
-//                    return RIGHT_UNCLE_BLACK;
-//            }
-//        } else if (grandparent->right != NULL) {
-//            if (grandparent->right == node->parent && grandparent->left != NULL) {
-//                if (grandparent->left->color == RED)
-//                    return LEFT_UNCLE_RED;
-//                else
-//                    return LEFT_UNCLE_BLACK;
-//            }
-//        }
-//    } else {
-//        if (grandparent == NULL) return ROOT;
-//    }
     return NONE;
+}
+
+/*
+ * Checks for the imbalance category of the tree nodes.
+ * params:
+ *      subTreeRoot : node* <- node whose imbalance category is to be checked
+ *      pos1 : int <- parent's position relative to grandparent( done in fixViolations)
+ * returns:
+ *      category : int <- can return: ( RR, RL, LL, LR )
+ */
+int checkImbalanceCategory(node *subtreeRoot, int pos1) {
+    return pos1 == R ?
+           getPositionRelativeToParent(subtreeRoot) == R ? RR : RL
+                     :
+           getPositionRelativeToParent(subtreeRoot) == L ? LL : LR;
 }

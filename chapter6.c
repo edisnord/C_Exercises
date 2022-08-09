@@ -200,33 +200,39 @@ int cleanName(char **name) {
 
 void seeMatching(char **names, int num, int matching) {
     char **finalnames = makeArray;
-    int index = 0;
-    for (int i = 0; i < matching; i++) {
-        struct charCount {
-            char character;
-            int count;
-        } cnt;
-        cnt.character = names[i][0];
-        for (int j = 0; j < num; j++) {
-            if (names[j][i] == cnt.character) {
-                cnt.count++;
-            } else {
-                if (cnt.count > 1 &&
-                        ( finalnames[index - 1][i - i ? 1 : 0] == names[j][i - i ? 1 : 0] || index == 0 ) )
-                    finalnames[index++] = names[j - 1];
-                cnt.count = 1;
-                cnt.character = names[j][i];
-            }
-        }
-        if (cnt.count == 1) names[num - 1][0] = '\0';
 
-        memcpy(names, finalnames, (index + 1) * sizeof(char **));
-        memset(finalnames, 0, (index + 1) * sizeof(char **));
-        num = index;
-        index = 0;
 
-    }
-    for (int j = 0; j < num; j++) puts(finalnames[j]);
+
+
+
+
+//    int index = 0;
+//    for (int i = 0; i < matching; i++) {
+//        struct charCount {
+//            char character;
+//            int count;
+//        } cnt;
+//        cnt.character = names[i][0];
+//        for (int j = 0; j < num; j++) {
+//            if (names[j][i] == cnt.character) {
+//                cnt.count++;
+//            } else {
+//                if (cnt.count > 1 &&
+//                        ( finalnames[index - 1][i - i ? 1 : 0] == names[j][i - i ? 1 : 0] || index == 0 ) )
+//                    finalnames[index++] = names[j - 1];
+//                cnt.count = 1;
+//                cnt.character = names[j][i];
+//            }
+//        }
+//        if (cnt.count == 1) names[num - 1][0] = '\0';
+//
+//        memcpy(names, finalnames, (index + 1) * sizeof(char **));
+//        memset(finalnames, 0, (index + 1) * sizeof(char **));
+//        num = index;
+//        index = 0;
+//
+//    }
+//    for (int j = 0; j < num; j++) puts(finalnames[j]);
 
 }
 

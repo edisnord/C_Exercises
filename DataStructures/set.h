@@ -36,9 +36,11 @@ int insertSet(set *set, char *val);
 
 int insertTraversal(node *setNode, node *node);
 
-int rotateLeft(node *node);
+node * rotateLeft(node *root);
 
-int rotateRight(node *node);
+int checkImbalanceCategory(node *subtreeRoot, int pos1);
+
+node * rotateRight(node *root);
 
 //Mir ben ti implementosh kto height functions
 int computeHeight(set *set);

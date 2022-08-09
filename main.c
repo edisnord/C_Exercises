@@ -5,7 +5,7 @@
 #include "DataStructures/set.h"
 
 //void seeMatching(char** array, int num, int matching){
-//    char** finalArray
+//    char** finalArray;
 //    for (int i = 0; i < matching; ++i) {
 //        char* current = malloc(strlen(array[i]) * sizeof(char));
 //        strcpy(current, array[i]);
@@ -13,7 +13,7 @@
 //
 //        for (int j = 0; j < matching; ++j) {
 //            char* needle = strstr(array[j], current);
-//            if(needle == array[j]){
+//            if(strcmp(needle, current) == 0){
 //
 //            }
 //        }

@@ -5,6 +5,7 @@
 #ifndef TEST_CHAPTER6_H
 #define TEST_CHAPTER6_H
 
+#include "DataStructures/set.h"
 #include <ctype.h>
 #include "stdlib.h"
 #include "string.h"
@@ -15,6 +16,7 @@
 #define false 0
 #define true 1
 
+char *substring(char *string, int start, int end);
 
 char **readStatements(char **statements, FILE *file);
 

@@ -198,12 +198,35 @@ int cleanName(char **name) {
     return 1;
 }
 
+char *substring(char *string, int start, int end) {
+    if (end >= strlen(string) || end < 0) {
+        puts("substring: end parameter out of bounds");
+        return NULL;
+    } else if (start >= strlen(string) || start < 0) {
+        puts("substring: start parameter out of bounds");
+        return NULL;
+    } else if (string == NULL) {
+        puts("substring: string reference is null");
+        return NULL;
+    }
+
+    char *finalString = malloc((end - start + 1) * sizeof(char));
+    strncpy(finalString, string + start, end - start + 1);
+    return finalString;
+}
+
 void seeMatching(char **names, int num, int matching) {
     char **finalnames = makeArray;
+    set set1 = {NULL, 0};
 
+    for (int i = 0; i < num; ++i) {
+        insertSet(&set1, substring(names[i], 0, matching));
+    }
 
-
-
+    int count = 0;
+    for (int i = 0; i < num; ++i) {
+        
+    }
 
 
 //    int index = 0;

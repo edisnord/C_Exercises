@@ -35,7 +35,7 @@ node *newNullNode(node *parent) {
 }
 
 //Returns pointer to heap-allocated node structure
-node *newSetNode(char *val) {
+node *newTreeNode(char *val) {
     node *nodePtr = malloc(sizeof(node));
     if (nodePtr == NULL) {
         fprintf(stderr, "No more MALLOC space!");
@@ -49,7 +49,7 @@ node *newSetNode(char *val) {
 }
 
 int insertSet(set *set, char *val) {
-    node *node = newSetNode(val);
+    node *node = newTreeNode(val);
     if (set->root == NULL || set->height == 0) {
         node->color = BLACK;
         set->root = node;
@@ -58,16 +58,16 @@ int insertSet(set *set, char *val) {
     }
 
     int assumedHeight;
-    set->height = (assumedHeight = insertTraversal(set->root, node)) > 0 ? assumedHeight : set->height;
+    set->height = (assumedHeight = insertNodeBT(set->root, node)) > 0 ? assumedHeight : set->height;
 
 
     return set->height > 0 ? fixViolations(node) : 0;
 }
 
-int insertTraversal(node *setNode, node *node) {
+int insertNodeBT(node *setNode, node *node) {
     if (strcmp(setNode->value, node->value) > 0) {
         if (setNode->left->value != NULL)
-            return 1 + insertTraversal(setNode->left, node);
+            return 1 + insertNodeBT(setNode->left, node);
         else {
             free(setNode->left);
             node->parent = setNode;
@@ -77,7 +77,7 @@ int insertTraversal(node *setNode, node *node) {
 
     } else if (strcmp(setNode->value, node->value) < 0) {
         if (setNode->right->value != NULL)
-            return 1 + insertTraversal(setNode->right, node);
+            return 1 + insertNodeBT(setNode->right, node);
         else {
             free(setNode->right);
             node->parent = setNode;
@@ -92,7 +92,7 @@ int insertTraversal(node *setNode, node *node) {
 }
 
 //Left rotation rooted at parameter node "root"
-node *rotateLeft(node *root) {
+node *rotateLeftBT(node *root) {
     node *pivot = root->right;
     if (getPositionRelativeToParent(root) == R)
         root->parent->right = pivot;
@@ -107,7 +107,7 @@ node *rotateLeft(node *root) {
 }
 
 //Right rotation rooted at parameter root "root"
-node *rotateRight(node *root) {
+node *rotateRightBT(node *root) {
     node *pivot = root->left;
     if (getPositionRelativeToParent(root) == R)
         root->parent->right = pivot;
@@ -168,11 +168,11 @@ int fixViolations(node *node) {
         case RIGHT_UNCLE_BLACK: {
             struct node *newRoot;
             grandparent = node->parent->parent;
-            if (checkImbalanceCategory(node, L) == LL) {
-                newRoot = rotateRight(grandparent);
+            if (checkImbalanceCategoryRBT(node, L) == LL) {
+                newRoot = rotateRightBT(grandparent);
             } else {
-                rotateLeft(node->parent);
-                newRoot = rotateRight(grandparent);
+                rotateLeftBT(node->parent);
+                newRoot = rotateRightBT(grandparent);
                 newRoot->color = BLACK;
                 newRoot->left->color = newRoot->right->color = RED;
             }
@@ -195,11 +195,11 @@ int fixViolations(node *node) {
         case LEFT_UNCLE_BLACK: {
             struct node *newRoot;
             grandparent = node->parent->parent;
-            if (checkImbalanceCategory(node, R) == RR)
-                newRoot = rotateLeft(grandparent);
+            if (checkImbalanceCategoryRBT(node, R) == RR)
+                newRoot = rotateLeftBT(grandparent);
             else {
-                rotateRight(node->parent);
-                newRoot = rotateLeft(grandparent);
+                rotateRightBT(node->parent);
+                newRoot = rotateLeftBT(grandparent);
             }
             newRoot->color = BLACK;
             newRoot->left->color = newRoot->right->color = RED;
@@ -250,7 +250,7 @@ int checkViolation(node *node) {
  * returns:
  *      category : int <- can return: ( RR, RL, LL, LR )
  */
-int checkImbalanceCategory(node *subtreeRoot, int pos1) {
+int checkImbalanceCategoryRBT(node *subtreeRoot, int pos1) {
     return pos1 == R ?
            getPositionRelativeToParent(subtreeRoot) == R ? RR : RL
                      :

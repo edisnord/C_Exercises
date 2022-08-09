@@ -30,22 +30,22 @@ int getPositionRelativeToParent(node* node);
 
 node *newNullNode(node* parent);
 
-node* newSetNode(char *val);
+node* newTreeNode(char *val);
 
 int insertSet(set *set, char *val);
 
-int insertTraversal(node *setNode, node *node);
+int insertNodeBT(node *setNode, node *node);
 
-node * rotateLeft(node *root);
+node * rotateLeftBT(node *root);
 
-int checkImbalanceCategory(node *subtreeRoot, int pos1);
+int checkImbalanceCategoryRBT(node *subtreeRoot, int pos1);
 
-node * rotateRight(node *root);
+node * rotateRightBT(node *root);
 
 //Mir ben ti implementosh kto height functions
-int computeHeight(set *set);
+int computeHeightBT(set *set);
 
-int computeBlackHeight(set *set);
+int computeBlackHeightRBT(set *set);
 
 node *searchSet(node *setNode, char *string);
 

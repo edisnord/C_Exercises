@@ -11,12 +11,10 @@
 #include "string.h"
 #include "stdio.h"
 
-#define makeArray malloc(sizeof(char *) * 10000)
+#define makeArray malloc(sizeof(char *) * 1000)
 
 #define false 0
 #define true 1
-
-char *substring(char *string, int start, int end);
 
 char **readStatements(char **statements, FILE *file);
 
@@ -24,21 +22,13 @@ void parseDecl(char *filepath, int chars);
 
 void readStatement(FILE *file, char *resultingStatement);
 
-void trim(char **string);
-
 long getVariableNames(char **statements, char ***names);
 
 int isKeyword(int l, int r, char *x);
 
 int isValidNameChar(char ch);
 
-int cleanName(char **name);
-
 int getNames(char **tokens, char **names);
-
-int comparator(const void *a, const void *b);
-
-void sortNamesAscending(char ***names, int num);
 
 void seeMatching(char **names, int num, int matching);
 

@@ -1,5 +1,6 @@
 #include <ctype.h>
 #include "chapter6.h"
+#include "chapter6_util.h"
 
 char keywords[14][8] = {"auto", "char", "const", "double", "enum", "float", "int", "long",
                         "register", "restrict", "short",
@@ -38,7 +39,7 @@ int getNames(char **tokens, char **names) {
         if (!strcmp(*(tokens + i), "=")) break;
         if (cleanName(tokens + i)) {
             if (strlen(*(tokens + i)) == 0) continue;
-            names[j] = malloc(1000 * sizeof(char));
+            names[j] = malloc(100 * sizeof(char));
             strcpy(names[j++], tokens[i]);
         } else {
             break;
@@ -59,7 +60,7 @@ char **readStatements(char **statements, FILE *file) {
 
     while (true) {
         //Allocate space for statement
-        statement = malloc(sizeof(char) * 1000);
+        statement = malloc(sizeof(char) * 300);
         readStatement(file, statement);
         if (feof(file)) break;   //Check EOF
         if (statement[0] == '\0') continue;
@@ -125,34 +126,28 @@ void readStatement(FILE *file, char *resultingStatement) {
     resultingStatement[charCnt] = '\0';
 }
 
-void trim(char **string) {
-    while (isspace(**string))
-        *string = *string + 1;
-    for (unsigned long int i = strlen(*string) - 1; isspace(*(*string + i)); --i)
-        *(*string + i) = '\0';
-}
-
 void tokenizeStatement(char *statement, char **tokens) {
     char *temp;
     int tokcnt = 0;
     for (char *i = strtok(statement, " "); i != NULL; i = strtok(NULL, " ")) {
-        tokens[tokcnt] = malloc(1000 * sizeof(char));
-        temp = malloc(1000 * sizeof(char));
+        tokens[tokcnt] = malloc(30 * sizeof(char));
+        temp = malloc(100 * sizeof(char));
         strcpy(temp, i);
         strcpy(tokens[tokcnt++], temp);
+        free(temp);
     }
     tokens[tokcnt] = NULL;
 }
 
 long getVariableNames(char **statements, char ***names) {
-    char **tokens = makeArray;
+    char **tokens = malloc(sizeof(char*) * 200);
     char **namesInc = *names;
 
     do {
         tokenizeStatement(*statements, tokens);
         namesInc = namesInc + getNames(tokens, namesInc);
         free(tokens);
-        tokens = makeArray;
+        tokens = malloc(sizeof(char*) * 200);
     } while (*(statements++ + 1) != NULL);
 
     puts("all names read!");
@@ -182,41 +177,8 @@ int isValidNameChar(char ch) {
     return (isalnum(ch) || ch == '_') ? true : false;
 }
 
-int cleanName(char **name) {
-    int j = 0;
-    char *clean = malloc(strlen(*name) * sizeof(char));
-    for (int i = 0; i < strlen(*name); ++i) {
-        if (isValidNameChar(*(*name + i)))
-            clean[j++] = *(*name + i);
-        else if (*(*name + i) == '(' && (i != 0 || *(*name + i - 1) != '*'))
-            return 0;
-        else if (*(*name + i) == '[')
-            break;
-    }
-    clean[j] = '\0';
-    *name = clean;
-    return 1;
-}
-
-char *substring(char *string, int start, int end) {
-    if (end >= strlen(string) || end < 0) {
-        puts("substring: end parameter out of bounds");
-        return NULL;
-    } else if (start >= strlen(string) || start < 0) {
-        puts("substring: start parameter out of bounds");
-        return NULL;
-    } else if (string == NULL) {
-        puts("substring: string reference is null");
-        return NULL;
-    }
-
-    char *finalString = malloc((end - start + 1) * sizeof(char));
-    strncpy(finalString, string + start, end - start + 1);
-    return finalString;
-}
-
 void seeMatching(char **names, int num, int matching) {
-    char **finalnames = makeArray;
+    char **finalnames = malloc(sizeof(char*) * 50);
     set set1 = {NULL, 0};
 
     for (int i = 0; i < num; ++i) {
@@ -259,10 +221,3 @@ void seeMatching(char **names, int num, int matching) {
 
 }
 
-void sortNamesAscending(char ***names, int num) {
-    qsort(*names, num, sizeof(char *), comparator);
-}
-
-int comparator(const void *a, const void *b) {
-    return strcmp(*(char **) a, *(char **) b);
-}

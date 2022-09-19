@@ -4,6 +4,8 @@
 
 #include "set.h"
 
+//TODO Refresh set root in set struct
+
 enum colors {
     RED, BLACK
 };
@@ -94,10 +96,12 @@ int insertNodeBT(node *setNode, node *node) {
 //Left rotation rooted at parameter node "root"
 node *rotateLeftBT(node *root) {
     node *pivot = root->right;
-    if (getPositionRelativeToParent(root) == R)
-        root->parent->right = pivot;
-    else
-        root->parent->left = pivot;
+    if(root->parent != NULL) {
+        if (getPositionRelativeToParent(root) == R)
+            root->parent->right = pivot;
+        else
+            root->parent->left = pivot;
+    }
     root->right = pivot->left;
     root->right->parent = root;
     pivot->left = root;
@@ -109,10 +113,12 @@ node *rotateLeftBT(node *root) {
 //Right rotation rooted at parameter root "root"
 node *rotateRightBT(node *root) {
     node *pivot = root->left;
-    if (getPositionRelativeToParent(root) == R)
-        root->parent->right = pivot;
-    else
-        root->parent->left = pivot;
+    if(root->parent != NULL) {
+        if (getPositionRelativeToParent(root) == R)
+            root->parent->right = pivot;
+        else
+            root->parent->left = pivot;
+    }
     root->left = pivot->right;
     root->left->parent = root;
     pivot->right = root;

@@ -1,4 +1,4 @@
-//#include "chapter6.h"
+#include "chapter6.h"
 #include "string.h"
 #include "stdio.h"
 #include "stdlib.h"
@@ -21,27 +21,6 @@
 //}
 
 int main() {
-
-
-    set set1 = {NULL, 0};
-
-    char *nodes[] = {"Quick",
-                     "Brown",
-                     "The",
-                     "Fox",
-                     "Jumped",
-                     "Over",
-                     "The",
-                     "Shit",
-                     "Lazy",
-                     "Brown",
-                     "Dog"};
-
-    for (int i = 0; i < 10; ++i) {
-        insertSet(&set1, nodes[i]);
-    }
-
-    puts(searchSet(set1.root, "Jumped")->value);
-
+    parseDecl("/home/edish/CLionProjects/C_Exercises/chapter_3.c", 6);
 }
 

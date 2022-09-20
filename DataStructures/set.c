@@ -25,5 +25,5 @@ int insertSet(set *set, void *val, unsigned long sizeOfDatatype, int arrLen) {
 }
 
 int searchSet(set *set, void *value) {
-    return searchRBTree(set->tree->root, value);
+    return searchRBTree(set->tree, value);
 }

@@ -342,4 +342,5 @@ void freeNodesBelow(node *node) {
 
 void freeTree(rbTree *tree) {
     freeNodesBelow(tree->root);
+    free(tree);
 }

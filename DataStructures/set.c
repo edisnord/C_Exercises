@@ -8,7 +8,6 @@ node *getSetRoot(set *set);
 
 void freeSet(set *set) {
     freeTree(set->tree);
-    free(set->tree);
     free(set);
 }
 

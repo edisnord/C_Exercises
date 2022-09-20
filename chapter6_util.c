@@ -28,7 +28,6 @@ int cleanName(char **name) {
     return 1;
 }
 
-//TODO Fix this function
 char *substring(char *string, int start, int end) {
     if (end >= strlen(string) || end < 0) {
         puts("substring: end parameter out of bounds");
@@ -48,9 +47,9 @@ char *substring(char *string, int start, int end) {
 }
 
 void sortNamesAscending(char ***names, int num) {
-    qsort(*names, num, sizeof(char *), comparator);
+    qsort(*names, num, sizeof(char *), utilComparator);
 }
 
-int comparator(const void *a, const void *b) {
+int utilComparator(const void *a, const void *b) {
     return strcmp(*(char **) a, *(char **) b);
 }

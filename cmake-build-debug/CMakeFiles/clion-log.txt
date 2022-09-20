@@ -1,4 +1,4 @@
-"C:\Users\Edis Hasaj\AppData\Local\JetBrains\CLion2022.1\cygwin_cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/cygdrive/c/Users/Edis Hasaj/AppData/Local/JetBrains/CLion 2022.1.1/bin/ninja/cygwin/ninja.exe" -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -G Ninja -S "/cygdrive/c/Users/Edis Hasaj/CLionProjects/C_Exercises" -B "/cygdrive/c/Users/Edis Hasaj/CLionProjects/C_Exercises/cmake-build-debug"
+"C:\Users\Edis Hasaj\AppData\Local\JetBrains\CLion2022.2\cygwin_cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/cygdrive/c/Users/Edis Hasaj/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3739.54/bin/ninja/cygwin/ninja.exe" -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -G Ninja -S "/cygdrive/c/Users/Edis Hasaj/CLionProjects/C_Exercises" -B "/cygdrive/c/Users/Edis Hasaj/CLionProjects/C_Exercises/cmake-build-debug"
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /cygdrive/c/Users/Edis Hasaj/CLionProjects/C_Exercises/cmake-build-debug

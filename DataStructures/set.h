@@ -11,48 +11,28 @@
 #include <memory.h>
 #include <stdio.h>
 #include "stdlib.h"
+#include "RBTree.h"
 
-typedef struct node {
-    struct node *parent;
-    struct node *left;
-    struct node *right;
-    char *value;
-    short color;
-} node;
+typedef struct set set;
 
+struct set_vtable{
+    int* (*insert)(set* set, void* insertion, unsigned long sizeOfDatatype, int arrLen);
+    int* (*search)(set* set, void* element);
+    void* (*free)(set* set);
+};
 
 typedef struct set {
-    struct node *root;
     int height;
+    struct set_vtable vtable;
+    rbTree* tree;
 } set;
 
-int getPositionRelativeToParent(node* node);
+int insertSet(set *set, void *val, unsigned long sizeOfDatatype, int arrLen);
 
-node *newNullNode(node* parent);
+int searchSet(set* set, void *value);
 
-node* newTreeNode(char *val);
+void freeSet(set *set);
 
-int insertSet(set *set, char *val);
-
-int insertNodeBT(node *setNode, node *node);
-
-node * rotateLeftBT(node *root);
-
-int checkImbalanceCategoryRBT(node *subtreeRoot, int pos1);
-
-node * rotateRightBT(node *root);
-
-//Mir ben ti implementosh kto height functions
-int computeHeightBT(set *set);
-
-int computeBlackHeightRBT(set *set);
-
-node *searchSet(node *setNode, char *string);
-
-int removeSet(set *set, char *string);
-
-int fixViolations(node *node);
-
-int checkViolation(node *node);
+set* newSet(comparator, unsigned long valSize);
 
 #endif //TEST_SET_H

@@ -1,8 +1,4 @@
 #include "chapter6.h"
-#include "string.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "DataStructures/set.h"
 
 //void seeMatching(char** array, int num, int matching){
 //    char** finalArray;
@@ -21,6 +17,6 @@
 //}
 
 int main() {
-    parseDecl("/home/edish/CLionProjects/C_Exercises/chapter_3.c", 6);
+    parseDecl("C:\\Users\\Edis Hasaj\\CLionProjects\\C_Exercises\\chapter_3.c", 6);
 }
 

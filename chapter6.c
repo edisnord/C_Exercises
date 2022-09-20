@@ -179,45 +179,13 @@ int isValidNameChar(char ch) {
 
 void seeMatching(char **names, int num, int matching) {
     char **finalnames = malloc(sizeof(char*) * 50);
-    set set1 = {NULL, 0};
+    set* set1 = newSet((comparator) strcmp, sizeof(char));
 
     for (int i = 0; i < num; ++i) {
-        insertSet(&set1, substring(names[i], 0, matching));
+        char* substr = substring(names[i], 0, matching - 1);
+        set1->vtable.insert(set1, substr, sizeof(char), strlen(substr));
+        free(substr);
     }
-
-    int count = 0;
-    for (int i = 0; i < num; ++i) {
-        
-    }
-
-
-//    int index = 0;
-//    for (int i = 0; i < matching; i++) {
-//        struct charCount {
-//            char character;
-//            int count;
-//        } cnt;
-//        cnt.character = names[i][0];
-//        for (int j = 0; j < num; j++) {
-//            if (names[j][i] == cnt.character) {
-//                cnt.count++;
-//            } else {
-//                if (cnt.count > 1 &&
-//                        ( finalnames[index - 1][i - i ? 1 : 0] == names[j][i - i ? 1 : 0] || index == 0 ) )
-//                    finalnames[index++] = names[j - 1];
-//                cnt.count = 1;
-//                cnt.character = names[j][i];
-//            }
-//        }
-//        if (cnt.count == 1) names[num - 1][0] = '\0';
-//
-//        memcpy(names, finalnames, (index + 1) * sizeof(char **));
-//        memset(finalnames, 0, (index + 1) * sizeof(char **));
-//        num = index;
-//        index = 0;
-//
-//    }
-//    for (int j = 0; j < num; j++) puts(finalnames[j]);
 
 }
 

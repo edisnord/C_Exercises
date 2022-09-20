@@ -14,7 +14,7 @@ char *substring(char *string, int start, int end);
 
 void sortNamesAscending(char ***names, int num);
 
-int comparator(const void *a, const void *b);
+int utilComparator(const void *a, const void *b);
 
 #include "chapter6.h"
 

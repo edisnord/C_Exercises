@@ -5,6 +5,7 @@
 #ifndef TEST_CHAPTER6_H
 #define TEST_CHAPTER6_H
 
+#include "DataStructures/hashmap.h"
 #include "DataStructures/set.h"
 #include <ctype.h>
 #include "stdlib.h"

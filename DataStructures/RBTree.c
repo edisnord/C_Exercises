@@ -66,8 +66,13 @@ node *searchNodes(rbTree *tree, node *setNode, void *value);
 
 int insertNodeBT(rbTree *tree, node *setNode, node *node);
 
-int searchRBTree(rbTree *tree, void *value) {
+int existsRBTree(rbTree *tree, void *value) {
     return searchNodes(tree, tree->root, value) == NULL ? false : true;
+}
+
+void* getRBTree(rbTree* tree, void *value){
+        node* node = searchNodes(tree, tree->root, value);
+        return node == NULL ? NULL : node->value;
 }
 
 int insertRBTree(rbTree *tree, void *value, int num) {
@@ -80,9 +85,10 @@ int insertRBTree(rbTree *tree, void *value, int num) {
     }
 
     int assumedHeight;
-    tree->height = (assumedHeight = insertNodeBT(tree, tree->root, node)) > 0 ? assumedHeight : tree->height;
+    int result = (assumedHeight = insertNodeBT(tree, tree->root, node)) > 0 ? true : false;
     fixViolations(node);
     tree->root = determineRoot(node);
+    return result;
 }
 
 rbTree *newRBTree(comparator comparator, unsigned long valSize) {
@@ -341,7 +347,7 @@ void freeNodesBelow(node *node) {
     }
 }
 
-void freeTree(rbTree *tree) {
+void freeRBTree(rbTree *tree) {
     freeNodesBelow(tree->root);
     free(tree);
 }

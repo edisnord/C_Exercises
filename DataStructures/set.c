@@ -7,7 +7,7 @@
 node *getSetRoot(set *set);
 
 void freeSet(set *set) {
-    freeTree(set->tree);
+    freeRBTree(set->tree);
     free(set);
 }
 
@@ -24,5 +24,5 @@ int insertSet(set *set, void *val, unsigned long sizeOfDatatype, int arrLen) {
 }
 
 int searchSet(set *set, void *value) {
-    return searchRBTree(set->tree, value);
+    return existsRBTree(set->tree, value);
 }

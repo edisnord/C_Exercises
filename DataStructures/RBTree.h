@@ -17,8 +17,10 @@ rbTree *newRBTree(comparator comparator, unsigned long valSize);
 
 int insertRBTree(rbTree *tree, void* value, int num);
 
-int searchRBTree(rbTree *tree, void *value);
+int existsRBTree(rbTree *tree, void *value);
 
-void freeTree(rbTree* tree);
+void* getRBTree(rbTree* tree, void *value);
+
+void freeRBTree(rbTree* tree);
 
 #endif //TEST_RBTREE_H

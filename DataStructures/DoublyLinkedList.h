@@ -12,16 +12,25 @@
 
 #ifndef CMP
 #define CMP
+
 typedef int (*comparator)(const void *, const void *);
+
 #endif
 
 typedef struct DoublyLinkedNode DoublyLinkedNode;
 
 typedef struct DoublyLinkedList DoublyLinkedList;
 
-DoublyLinkedList * newDLL(size_t sizeOf, comparator comparator);
-void appendDLL(DoublyLinkedList* list, void* value, int len);
-bool existsDLL(DoublyLinkedList* list, void* value);
-void removeDLL(DoublyLinkedList* list, int index);
+DoublyLinkedList *newDLL(size_t sizeOf, comparator comparator);
+
+void appendDLL(DoublyLinkedList *list, void *value, int len);
+
+bool existsDLL(DoublyLinkedList *list, void *value);
+
+void removeDLL(DoublyLinkedList *list, int index);
+
+void freeDLL(DoublyLinkedList *list);
+
+void *getDLL(DoublyLinkedList *list, int index);
 
 #endif

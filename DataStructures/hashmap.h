@@ -8,16 +8,23 @@
 #include "RBTree.h"
 #include "stdlib.h"
 
-typedef struct hashMap hashMap;
+typedef struct HashMap HashMap;
 
-typedef struct kvPair kvPair;
+typedef struct KvPair {
+    void *key;
+    void *value;
+} KvPair;
 
-int insertHashMap(hashMap *hashMap, void *val);
+const int size_hashmap = 40;
 
-void * getHashMap(hashMap* hashMap, void *value);
+void *getHashMap(HashMap *hashMap, void *value);
 
-void freeHashMap(hashMap *hashMap);
+KvPair *getHashMapMut(HashMap *hashMap, void *value);
 
-hashMap *newHashMap(size_t keySize, size_t valSize, comparator comparator);
+bool insertHashMap(HashMap *hashMap, void *key, void *val, int keyLen, int valLen);
+
+void freeHashMap(HashMap *hashMap);
+
+HashMap *newHashMap(size_t keySize, size_t valSize, comparator comparator);
 
 #endif //TEST_HASHMAP_H

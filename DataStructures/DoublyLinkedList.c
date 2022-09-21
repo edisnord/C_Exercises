@@ -4,42 +4,47 @@
 #include "DoublyLinkedList.h"
 
 typedef struct DoublyLinkedNode {
-    struct DoublyLinkedNode* prev;
-    struct DoublyLinkedNode* next;
-    char* value;
+    struct DoublyLinkedNode *prev;
+    struct DoublyLinkedNode *next;
+    void *value;
 } DoublyLinkedNode;
 
 typedef struct DoublyLinkedList {
-    DoublyLinkedNode* first;
-    DoublyLinkedNode* last;
+    DoublyLinkedNode *first;
+    DoublyLinkedNode *last;
     comparator equals;
     size_t elementSize;
 } DoublyLinkedList;
 
-int nodeExists(DoublyLinkedList* list, DoublyLinkedNode* node);
-int listLength(DoublyLinkedList* list);
-DoublyLinkedNode *getElement(int index, DoublyLinkedList *list);
-void addBefore(DoublyLinkedList *list, int index , DoublyLinkedNode *newNode);
-void addAfter(DoublyLinkedList* list, int index, DoublyLinkedNode* newNode);
-void deleteNode(DoublyLinkedList* list, DoublyLinkedNode* node) ;
+int nodeExists(DoublyLinkedList *list, DoublyLinkedNode *node);
 
-DoublyLinkedNode * createNode(DoublyLinkedList* list, void* val, int len){
-    DoublyLinkedNode * node = malloc(sizeof(node));
-    void* value = malloc(list->elementSize * len);
+int listLength(DoublyLinkedList *list);
+
+DoublyLinkedNode *getElement(int index, DoublyLinkedList *list);
+
+void addBefore(DoublyLinkedList *list, int index, DoublyLinkedNode *newNode);
+
+void addAfter(DoublyLinkedList *list, int index, DoublyLinkedNode *newNode);
+
+void deleteNode(DoublyLinkedList *list, DoublyLinkedNode *node);
+
+DoublyLinkedNode *createNode(DoublyLinkedList *list, void *val, int len) {
+    DoublyLinkedNode *node = malloc(sizeof(node));
+    void *value = malloc(list->elementSize * len);
     memcpy(value, val, list->elementSize * len);
-    *node = (struct DoublyLinkedNode){NULL, NULL, val};
+    *node = (struct DoublyLinkedNode) {NULL, NULL, val};
     return node;
 }
 
-DoublyLinkedList * newDLL(size_t sizeOf, comparator comparator){
-    DoublyLinkedList * list = malloc(sizeof(list));
-    *list = (struct DoublyLinkedList){NULL, NULL, comparator, sizeOf};
+DoublyLinkedList *newDLL(size_t sizeOf, comparator comparator) {
+    DoublyLinkedList *list = malloc(sizeof(list));
+    *list = (struct DoublyLinkedList) {NULL, NULL, comparator, sizeOf};
     return list;
 }
 
-void appendDLL(DoublyLinkedList* list, void* value, int len){
-    DoublyLinkedNode * node = createNode(list, value, len);
-    if(list->last == NULL){
+void appendDLL(DoublyLinkedList *list, void *value, int len) {
+    DoublyLinkedNode *node = createNode(list, value, len);
+    if (list->last == NULL) {
         list->first = node;
         list->last = node;
         return;
@@ -47,24 +52,45 @@ void appendDLL(DoublyLinkedList* list, void* value, int len){
     addAfter(list, listLength(list) - 1, node);
 }
 
-bool existsDLL(DoublyLinkedList* list, void* value){
+bool existsDLL(DoublyLinkedList *list, void *value) {
+    if (list->equals == NULL) {
+        printf("existsDLL: No comparator has been given for these values, can't check");
+        return false;
+    }
     DoublyLinkedNode *currNode = list->first;
     for (int i = 0; currNode != list->last; i++) {
-        if (list->equals(currNode->value, value) == 0) return 1;
+        if (list->equals(currNode->value, value) == 0) return true;
         currNode = currNode->next;
     }
-    if(list->equals(currNode->value, value)) return 1;
-    return 0;
+    if (list->equals(currNode->value, value)) return true;
+    return false;
 }
 
-void removeDLL(DoublyLinkedList* list, int index){
-    if(index < 0 || index >= listLength(list)){
-        char* error;
+void removeDLL(DoublyLinkedList *list, int index) {
+    if (index < 0 || index >= listLength(list)) {
+        char *error;
         asprintf(&error, "Index %d out of bounds for Doubly Linked List", index);
         perror(error);
         exit(1);
     }
-    deleteNode(list ,getElement(index, list));
+    deleteNode(list, getElement(index, list));
+}
+
+void* getDLL(DoublyLinkedList* list, int index){
+    DoublyLinkedNode *currNode = list->first;
+    for (int i = 0; i < index - 1; i++) {
+        currNode = currNode->next;
+    }
+    return currNode->value;
+}
+
+void freeDLL(DoublyLinkedList *list) {
+    DoublyLinkedNode *currNode;
+    for (currNode = list->last->prev; currNode->prev != NULL; currNode = currNode->prev) {
+        deleteNode(list, currNode->next);
+    }
+    deleteNode(list, currNode);
+    free(list);
 }
 
 int nodeExists(DoublyLinkedList *list, DoublyLinkedNode *node) {
@@ -88,7 +114,7 @@ int listLength(DoublyLinkedList *list) {
 }
 
 DoublyLinkedNode *getElement(int index, DoublyLinkedList *list) {
-    DoublyLinkedNode * nodePtr = NULL;
+    DoublyLinkedNode *nodePtr = NULL;
     if (list != NULL) {
         if (list->first == NULL) {
             return NULL;
@@ -108,8 +134,8 @@ DoublyLinkedNode *getElement(int index, DoublyLinkedList *list) {
     }
 }
 
-void addBefore(DoublyLinkedList *list, int index , DoublyLinkedNode *newNode) {
-    DoublyLinkedNode* node = getElement(index, list);
+void addBefore(DoublyLinkedList *list, int index, DoublyLinkedNode *newNode) {
+    DoublyLinkedNode *node = getElement(index, list);
     //Check if there are no nodes in tree
     if (list->first == NULL) {
         list->first = newNode;
@@ -117,14 +143,14 @@ void addBefore(DoublyLinkedList *list, int index , DoublyLinkedNode *newNode) {
         return;
     }
     //Perform insertion
-    if(node != NULL){
+    if (node != NULL) {
         newNode->next = node;
         newNode->prev = node->prev;
-        if(node->prev != NULL){
+        if (node->prev != NULL) {
             node->prev->next = newNode;
         }
         node->prev = newNode;
-        if(list->first == node)
+        if (list->first == node)
             list->first = newNode;
     } else {
         printf("DoublyLinkedList: The node before which you wish to insert is not part of this list");
@@ -132,7 +158,7 @@ void addBefore(DoublyLinkedList *list, int index , DoublyLinkedNode *newNode) {
 }
 
 void addAfter(DoublyLinkedList *list, int index, DoublyLinkedNode *newNode) {
-    DoublyLinkedNode* node = getElement(index, list);
+    DoublyLinkedNode *node = getElement(index, list);
     if (list->first == NULL) {
         list->first = newNode;
         list->last = newNode;
@@ -142,7 +168,7 @@ void addAfter(DoublyLinkedList *list, int index, DoublyLinkedNode *newNode) {
     if (node != NULL) {
         newNode->prev = node;
         newNode->next = node->next;
-        if(node->next != NULL)
+        if (node->next != NULL)
             node->next->prev = newNode;
         node->next = newNode;
         if (list->last == node)

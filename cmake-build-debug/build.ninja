@@ -145,6 +145,12 @@ build CMakeFiles/Test.dir/DataStructures/RBTree.c.o: C_COMPILER__Test_Debug /cyg
   OBJECT_DIR = CMakeFiles/Test.dir
   OBJECT_FILE_DIR = CMakeFiles/Test.dir/DataStructures
 
+build CMakeFiles/Test.dir/DataStructures/DoublyLinkedList.c.o: C_COMPILER__Test_Debug /cygdrive/c/Users/Edis$ Hasaj/CLionProjects/C_Exercises/DataStructures/DoublyLinkedList.c || cmake_object_order_depends_target_Test
+  DEP_FILE = CMakeFiles/Test.dir/DataStructures/DoublyLinkedList.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/Test.dir
+  OBJECT_FILE_DIR = CMakeFiles/Test.dir/DataStructures
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Test
@@ -153,7 +159,7 @@ build CMakeFiles/Test.dir/DataStructures/RBTree.c.o: C_COMPILER__Test_Debug /cyg
 #############################################
 # Link the executable Test.exe
 
-build Test.exe: C_EXECUTABLE_LINKER__Test_Debug CMakeFiles/Test.dir/Bit-Related_exercises/setbits.c.o CMakeFiles/Test.dir/main.c.o CMakeFiles/Test.dir/Bit-Related_exercises/invert.c.o CMakeFiles/Test.dir/Bit-Related_exercises/basic_operations_bit.c.o CMakeFiles/Test.dir/Bit-Related_exercises/rightRot.c.o CMakeFiles/Test.dir/Bit-Related_exercises/bitCount.c.o CMakeFiles/Test.dir/Char-related_exercises/lower.c.o CMakeFiles/Test.dir/chapter_3.c.o CMakeFiles/Test.dir/chapter4.c.o CMakeFiles/Test.dir/chapter4_calculator.c.o CMakeFiles/Test.dir/chapter5.c.o CMakeFiles/Test.dir/chapter6.c.o CMakeFiles/Test.dir/DataStructures/set.c.o CMakeFiles/Test.dir/chapter6_util.c.o CMakeFiles/Test.dir/DataStructures/hashmap.c.o CMakeFiles/Test.dir/DataStructures/RBTree.c.o
+build Test.exe: C_EXECUTABLE_LINKER__Test_Debug CMakeFiles/Test.dir/Bit-Related_exercises/setbits.c.o CMakeFiles/Test.dir/main.c.o CMakeFiles/Test.dir/Bit-Related_exercises/invert.c.o CMakeFiles/Test.dir/Bit-Related_exercises/basic_operations_bit.c.o CMakeFiles/Test.dir/Bit-Related_exercises/rightRot.c.o CMakeFiles/Test.dir/Bit-Related_exercises/bitCount.c.o CMakeFiles/Test.dir/Char-related_exercises/lower.c.o CMakeFiles/Test.dir/chapter_3.c.o CMakeFiles/Test.dir/chapter4.c.o CMakeFiles/Test.dir/chapter4_calculator.c.o CMakeFiles/Test.dir/chapter5.c.o CMakeFiles/Test.dir/chapter6.c.o CMakeFiles/Test.dir/DataStructures/set.c.o CMakeFiles/Test.dir/chapter6_util.c.o CMakeFiles/Test.dir/DataStructures/hashmap.c.o CMakeFiles/Test.dir/DataStructures/RBTree.c.o CMakeFiles/Test.dir/DataStructures/DoublyLinkedList.c.o
   FLAGS = -g
   LINK_FLAGS = -Wl,--enable-auto-import
   LINK_LIBRARIES = -lm

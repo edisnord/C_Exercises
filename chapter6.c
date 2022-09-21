@@ -177,15 +177,30 @@ int isValidNameChar(char ch) {
     return (isalnum(ch) || ch == '_') ? true : false;
 }
 
+//Keys are strings in this case so strcmp should suffice
+int comparatorKey(const void* first, const void* next){
+    KvPair* key1 = (KvPair*)first;
+    KvPair* key2 = (KvPair*)next;
+
+    return strcmp(key1->value, key2->value);
+}
+
+//Hashmap 1 has { substrings : hashmap 2}
+//Hashmap 2 has { names }
 void seeMatching(char **names, int num, int matching) {
     char **finalnames = malloc(sizeof(char*) * 50);
-    set* set1 = newSet((comparator) strcmp, sizeof(char));
+    HashMap* hashMap = newHashMap(sizeof(char*), size_hashmap, comparatorKey);
 
     for (int i = 0; i < num; ++i) {
         char* substr = substring(names[i], 0, matching - 1);
-        set1->vtable.insert(set1, substr, sizeof(char), strlen(substr));
+        KvPair* kv = getHashMapMut(hashMap, substr);
+        if(kv == NULL){
+            int* val = malloc(sizeof(int));
+            *val = 1;
+            insertHashMap(hashMap, substr, val, (int)strlen(substr), 1);
+        } else {
+            (*(int*)kv->value)++;
+        }
         free(substr);
     }
-
 }
-

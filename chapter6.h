@@ -6,7 +6,7 @@
 #define TEST_CHAPTER6_H
 
 #include "DataStructures/hashmap.h"
-#include "DataStructures/set.h"
+#include "DataStructures/DoublyLinkedList.h"
 #include <ctype.h>
 #include "stdlib.h"
 #include "string.h"

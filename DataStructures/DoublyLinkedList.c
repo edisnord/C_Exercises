@@ -42,7 +42,7 @@ DoublyLinkedList *newDLL(size_t sizeOf, comparator comparator) {
     return list;
 }
 
-void appendDLL(DoublyLinkedList *list, void *value, int len) {
+void appendDLL(DoublyLinkedList *list, void *value, size_t len) {
     DoublyLinkedNode *node = createNode(list, value, len);
     if (list->last == NULL) {
         list->first = node;

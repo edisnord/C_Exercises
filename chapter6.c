@@ -185,21 +185,23 @@ int comparatorKey(const void* first, const void* next){
     return strcmp(key1->value, key2->value);
 }
 
-//Hashmap 1 has { substrings : hashmap 2}
-//Hashmap 2 has { names }
+//Hashmap 1 has { substrings : DLL}
+//Hashmap 2 has { DLL of names }
 void seeMatching(char **names, int num, int matching) {
     char **finalnames = malloc(sizeof(char*) * 50);
-    HashMap* hashMap = newHashMap(sizeof(char*), size_hashmap, comparatorKey);
+    HashMap* hashMap = newHashMap(sizeof(char*), SIZE_OF_DLL, comparatorKey);
 
     for (int i = 0; i < num; ++i) {
         char* substr = substring(names[i], 0, matching - 1);
         KvPair* kv = getHashMapMut(hashMap, substr);
         if(kv == NULL){
-            int* val = malloc(sizeof(int));
-            *val = 1;
-            insertHashMap(hashMap, substr, val, (int)strlen(substr), 1);
+            DoublyLinkedList * val = malloc(SIZE_OF_DLL);
+            //TODO fix the stupid shit with the sizeof
+            //aka ke vene size of pointer the value to be memcpy'd njelloj
+            //val = newDLL(sizeof(char*))
+            //insertHashMap(hashMap, substr, val, (int)strlen(substr), 1);
         } else {
-            (*(int*)kv->value)++;
+            appendDLL((DoublyLinkedList*)kv->value, names[i], strlen(names[i]));
         }
         free(substr);
     }

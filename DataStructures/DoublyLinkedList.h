@@ -17,13 +17,15 @@ typedef int (*comparator)(const void *, const void *);
 
 #endif
 
+const size_t SIZE_OF_DLL = 32;
+
 typedef struct DoublyLinkedNode DoublyLinkedNode;
 
 typedef struct DoublyLinkedList DoublyLinkedList;
 
 DoublyLinkedList *newDLL(size_t sizeOf, comparator comparator);
 
-void appendDLL(DoublyLinkedList *list, void *value, int len);
+void appendDLL(DoublyLinkedList *list, void *value, size_t len);
 
 bool existsDLL(DoublyLinkedList *list, void *value);
 

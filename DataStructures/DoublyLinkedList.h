@@ -3,27 +3,25 @@
 
 #ifndef DOUBLY_LIST
 #define DOUBLY_LIST
+#define _GNU_SOURCE
 
 #include <stdio.h>
-#include <string.h>
+#include "stdbool.h"
+#include "string.h"
 #include <stdlib.h>
 
-typedef struct DoublyLinkedNode {
-	struct DoublyLinkedNode* prev;
-	struct DoublyLinkedNode* next;
-	char* value;
-} DoublyLinkedNode;
+#ifndef CMP
+#define CMP
+typedef int (*comparator)(const void *, const void *);
+#endif
 
-typedef struct DoublyLinkedList {
-	DoublyLinkedNode* first;
-	DoublyLinkedNode* last;
-} DoublyLinkedList;
+typedef struct DoublyLinkedNode DoublyLinkedNode;
 
-int nodeExists(DoublyLinkedList* list, DoublyLinkedNode* node);
-int listLength(DoublyLinkedList* list);
-DoublyLinkedNode getElement(int index, DoublyLinkedList* list);
-void addBefore(DoublyLinkedList* list, DoublyLinkedNode* node, DoublyLinkedNode* newNode);
-void addAfter(DoublyLinkedList* list, DoublyLinkedNode* node, DoublyLinkedNode* newNode);
-void deleteNode(DoublyLinkedList* list, DoublyLinkedNode* node) ;
+typedef struct DoublyLinkedList DoublyLinkedList;
+
+DoublyLinkedList * newDLL(size_t sizeOf, comparator comparator);
+void appendDLL(DoublyLinkedList* list, void* value, int len);
+bool existsDLL(DoublyLinkedList* list, void* value);
+void removeDLL(DoublyLinkedList* list, int index);
 
 #endif

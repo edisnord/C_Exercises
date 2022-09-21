@@ -12,9 +12,9 @@ typedef struct hashMap hashMap;
 
 typedef struct kvPair kvPair;
 
-int insertHashMap(hashMap *hashMap, char *val);
+int insertHashMap(hashMap *hashMap, void *val);
 
-int *searchHashMap(hashMap* hashMap, char *string);
+void * getHashMap(hashMap* hashMap, void *value);
 
 void freeHashMap(hashMap *hashMap);
 

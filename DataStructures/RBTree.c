@@ -327,6 +327,7 @@ void freeNode(node *node) {
     } else {
         node->parent->left = NULL;
     }
+    free(node->value);
     free(node);
 }
 

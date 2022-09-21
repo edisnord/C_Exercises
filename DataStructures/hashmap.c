@@ -4,11 +4,14 @@
 
 #include <memory.h>
 #include "hashmap.h"
+#include "DoublyLinkedList.h"
 
 struct kvPair {
     void* key;
     void* value;
 };
+
+
 
 struct hashMap {
     rbTree* tree;
@@ -26,15 +29,16 @@ kvPair* newKeyValuePair(hashMap *map, void* key, void* value, int keyLen, int va
     return pair;
 }
 
-int insertHashMap(hashMap *hashMap, char *val) {
+int insertHashMap(hashMap *hashMap, void *val) {
     return 0;
 }
 
-int *searchHashMap(hashMap *hashMap, char *string) {
+void * getHashMap(hashMap *hashMap, void *value) {
     return NULL;
 }
 
 void freeHashMap(hashMap *hashMap) {
+    freeTree(hashMap->tree);
 
 }
 

@@ -7,7 +7,11 @@
 
 typedef struct node node;
 typedef struct rbTree rbTree;
+#ifndef CMP
+#define CMP
 typedef int (*comparator)(const void *, const void *);
+#endif
+
 
 rbTree *newRBTree(comparator comparator, unsigned long valSize);
 

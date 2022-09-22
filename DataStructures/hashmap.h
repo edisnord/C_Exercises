@@ -7,6 +7,8 @@
 
 #include "RBTree.h"
 #include "stdlib.h"
+#include "stdbool.h"
+#include "DoublyLinkedList.h"
 
 typedef struct HashMap HashMap;
 
@@ -15,15 +17,21 @@ typedef struct KvPair {
     void *value;
 } KvPair;
 
-const int size_hashmap = 40;
+enum flatten{
+    KEYS,
+    VALUES
+};
 
 void *getHashMap(HashMap *hashMap, void *value);
 
 KvPair *getHashMapMut(HashMap *hashMap, void *value);
 
+DoublyLinkedList *flattenHashMap(HashMap *map);
+
 bool insertHashMap(HashMap *hashMap, void *key, void *val, int keyLen, int valLen);
 
 void freeHashMap(HashMap *hashMap);
+
 
 HashMap *newHashMap(size_t keySize, size_t valSize, comparator comparator);
 

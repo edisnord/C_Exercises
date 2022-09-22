@@ -3,10 +3,8 @@
 //
 
 #include "RBTree.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
-#include "stdbool.h"
+#include "hashmap.h"
+
 
 enum colors {
     RED, BLACK
@@ -30,6 +28,7 @@ typedef struct node {
     struct node *right;
     void *value;
     short color;
+    int len;
 } node;
 
 
@@ -70,13 +69,52 @@ int existsRBTree(rbTree *tree, void *value) {
     return searchNodes(tree, tree->root, value) == NULL ? false : true;
 }
 
+node* cpNode(rbTree *tree, node* node){
+    struct node *newNode = malloc(sizeof(struct node));
+    newNode->left = node->left;
+    newNode->right = node->right;
+    newNode->color = node->color;
+    newNode->parent = node->parent;
+    newNode->len = node->len;
+    newNode->value = malloc(tree->valSize * node->len);
+    memcpy(newNode->value, node->value, tree->valSize * node->len);
+    return newNode;
+}
+
+void traverseAndAppend(rbTree* tree, DoublyLinkedList* list, node* root){
+    if(root == NULL || root->value == NULL)
+        return;
+
+//    //DEBUG
+//    printf("%s \n", (char*)(((KvPair *)root->value)->key));
+//    //DEBUG
+
+    appendDLL(list, root->value, root->len);
+
+    traverseAndAppend(tree, list, root->left);
+
+    traverseAndAppend(tree, list, root->right);
+}
+
+DoublyLinkedList * flattenRBTree(rbTree* tree){
+    DoublyLinkedList *list = newDLL(tree->valSize, tree->comparator);
+    traverseAndAppend(tree, list, tree->root);
+    return list;
+}
+
+
+
+bool isEmptyRBTree(rbTree *tree){
+    return tree->root == NULL;
+}
+
 void* getRBTree(rbTree* tree, void *value){
         node* node = searchNodes(tree, tree->root, value);
         return node == NULL ? NULL : node->value;
 }
 
 int insertRBTree(rbTree *tree, void *value, int num) {
-    node *node = newTreeNode(tree, value, 0);
+    node *node = newTreeNode(tree, value, num);
     if (tree->root == NULL || tree->height == 0) {
         node->color = BLACK;
         tree->root = node;
@@ -84,8 +122,7 @@ int insertRBTree(rbTree *tree, void *value, int num) {
         return 1;
     }
 
-    int assumedHeight;
-    int result = (assumedHeight = insertNodeBT(tree, tree->root, node)) > 0 ? true : false;
+    int result = (insertNodeBT(tree, tree->root, node)) > 0 ? true : false;
     fixViolations(node);
     tree->root = determineRoot(node);
     return result;
@@ -108,6 +145,7 @@ node *newNullNode(node *parent) {
     nodePtr->left = NULL;
     nodePtr->right = NULL;
     nodePtr->color = BLACK;
+    nodePtr->len = 0;
     return nodePtr;
 }
 
@@ -122,6 +160,7 @@ node *newTreeNode(rbTree *tree, void *val, int num) {
     nodePtr->left = newNullNode(nodePtr);
     nodePtr->right = newNullNode(nodePtr);
     nodePtr->color = RED;
+    nodePtr->len = num;
     return nodePtr;
 }
 

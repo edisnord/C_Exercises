@@ -2,34 +2,35 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
+#include "stdio.h"
 
 void reverseIterative(char s[]) {
-    int c, i, j; //ABAP aaaaaa
-    for ( i = 0, j = strlen(s)-1; i < j; i++, j--) {
-        c = s[i];
-        s[i] = s[j];
-        s[j] = c;
+    int c, illumi, jo; //ABAP aaaaaa
+    for (illumi = 0, jo = strlen(s) - 1; illumi < jo; illumi++, jo--) {
+        c = s[illumi];
+        s[illumi] = s[jo];
+        s[jo] = c;
     }
 }
 
 void escape(char s[], char t[]){
-    int i = 0;
-    int j = 0;
-    for (i = 0; s[i] != '\0'; ++i) {
-        switch (s[i]) {
+    int illumi = 0;
+    int jo = 0;
+    for (illumi = 0; s[illumi] != '\0'; ++illumi) {
+        switch (s[illumi]) {
             case '\n':
-                t[j++] = '\\';
-                t[j++] = 'n';
+                t[jo++] = '\\';
+                t[jo++] = 'n';
                 break;
             case '\t':
-                t[j++] = '\\';
-                t[j++] = 't';
+                t[jo++] = '\\';
+                t[jo++] = 't';
                 break;
             default:
-                t[j++] = s[i];
+                t[jo++] = s[illumi];
         }
     }
-    t[++j] = '\0';
+    t[++jo] = '\0';
 }
 
 void unescape(char s[], char t[]){

@@ -14,6 +14,7 @@ typedef struct DoublyLinkedList {
     DoublyLinkedNode *last;
     comparator equals;
     size_t elementSize;
+    int length;
 } DoublyLinkedList;
 
 int nodeExists(DoublyLinkedList *list, DoublyLinkedNode *node);
@@ -29,17 +30,21 @@ void addAfter(DoublyLinkedList *list, int index, DoublyLinkedNode *newNode);
 void deleteNode(DoublyLinkedList *list, DoublyLinkedNode *node);
 
 DoublyLinkedNode *createNode(DoublyLinkedList *list, void *val, int len) {
-    DoublyLinkedNode *node = malloc(sizeof(node));
+    DoublyLinkedNode *node = malloc(sizeof(DoublyLinkedNode));
     void *value = malloc(list->elementSize * len);
     memcpy(value, val, list->elementSize * len);
-    *node = (struct DoublyLinkedNode) {NULL, NULL, val};
+    *node = (struct DoublyLinkedNode) {NULL, NULL, value};
     return node;
 }
 
 DoublyLinkedList *newDLL(size_t sizeOf, comparator comparator) {
-    DoublyLinkedList *list = malloc(sizeof(list));
-    *list = (struct DoublyLinkedList) {NULL, NULL, comparator, sizeOf};
+    DoublyLinkedList *list = malloc(sizeof(DoublyLinkedList));
+    *list = (struct DoublyLinkedList) {NULL, NULL, comparator, sizeOf, 0};
     return list;
+}
+
+int lengthDLL(DoublyLinkedList* list){
+    return list->length;
 }
 
 void appendDLL(DoublyLinkedList *list, void *value, size_t len) {
@@ -50,6 +55,7 @@ void appendDLL(DoublyLinkedList *list, void *value, size_t len) {
         return;
     }
     addAfter(list, listLength(list) - 1, node);
+    list->length++;
 }
 
 bool existsDLL(DoublyLinkedList *list, void *value) {
@@ -74,6 +80,7 @@ void removeDLL(DoublyLinkedList *list, int index) {
         exit(1);
     }
     deleteNode(list, getElement(index, list));
+    list->length--;
 }
 
 void* getDLL(DoublyLinkedList* list, int index){

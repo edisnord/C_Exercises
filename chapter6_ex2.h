@@ -2,8 +2,8 @@
 // Created by edish on 22-07-11.
 //
 
-#ifndef TEST_CHAPTER6_H
-#define TEST_CHAPTER6_H
+#ifndef TEST_CHAPTER6_EX2_H
+#define TEST_CHAPTER6_EX2_H
 
 #include "DataStructures/hashmap.h"
 #include "DataStructures/DoublyLinkedList.h"
@@ -12,7 +12,7 @@
 #include "string.h"
 #include "stdio.h"
 
-#define makeArray malloc(sizeof(char *) * 1000)
+#define makeArray malloc(sizeof(char *) * 200)
 
 #define false 0
 #define true 1
@@ -33,4 +33,4 @@ int getNames(char **tokens, char **names);
 
 void seeMatching(char **names, int num, int matching);
 
-#endif //TEST_CHAPTER6_H
+#endif //TEST_CHAPTER6_EX2_H

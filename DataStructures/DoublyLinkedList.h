@@ -17,7 +17,7 @@ typedef int (*comparator)(const void *, const void *);
 
 #endif
 
-#define SIZE_OF_DLL 32
+#define SIZE_OF_DLL 40
 
 typedef struct DoublyLinkedNode DoublyLinkedNode;
 

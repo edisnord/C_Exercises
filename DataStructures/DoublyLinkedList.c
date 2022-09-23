@@ -30,7 +30,7 @@ void addAfter(DoublyLinkedList *list, int index, DoublyLinkedNode *newNode);
 void deleteNode(DoublyLinkedList *list, DoublyLinkedNode *node);
 
 DoublyLinkedNode *createNode(DoublyLinkedList *list, void *val, int len) {
-    DoublyLinkedNode *node = malloc(sizeof(DoublyLinkedNode));
+    DoublyLinkedNode *node = malloc(sizeof(struct DoublyLinkedNode));
     void *value = malloc(list->elementSize * len);
     memcpy(value, val, list->elementSize * len);
     *node = (struct DoublyLinkedNode) {NULL, NULL, value};
@@ -52,6 +52,7 @@ void appendDLL(DoublyLinkedList *list, void *value, size_t len) {
     if (list->last == NULL) {
         list->first = node;
         list->last = node;
+        list->length++;
         return;
     }
     addAfter(list, listLength(list) - 1, node);
@@ -85,7 +86,7 @@ void removeDLL(DoublyLinkedList *list, int index) {
 
 void* getDLL(DoublyLinkedList* list, int index){
     DoublyLinkedNode *currNode = list->first;
-    for (int i = 0; i < index - 1; i++) {
+    for (int i = 0; i < index; i++) {
         currNode = currNode->next;
     }
     return currNode->value;

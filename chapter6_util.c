@@ -30,7 +30,6 @@ int cleanName(char **name) {
 
 char *substring(char *string, int start, int end) {
     if (end >= strlen(string) || end < 0) {
-        puts("substring: end parameter out of bounds");
         end = strlen(string) - 1;
     } else if (start >= strlen(string) || start < 0) {
         puts("substring: start parameter out of bounds");

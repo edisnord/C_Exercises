@@ -1,5 +1,5 @@
 #include <ctype.h>
-#include "chapter6.h"
+#include "chapter6_ex2.h"
 #include "chapter6_util.h"
 
 char keywords[14][8] = {"auto", "char", "const", "double", "enum", "float", "int", "long",
@@ -11,14 +11,14 @@ void parseDecl(char *filepath, int chars) {
     char **names = makeArray;
     FILE *file = fopen(filepath, "r");
 
-    if (file == NULL)
+    if (file == NULL) {
+        perror("parseDecl");
         return;
+    }
 
     readStatements(statements, file);
     puts("File read completely!");
     long numberOfNames = getVariableNames(statements, &names);
-    sortNamesAscending(&names, (int) numberOfNames);
-    puts("names sorted");
     seeMatching(names, (int) numberOfNames, chars);
 }
 
@@ -39,14 +39,13 @@ int getNames(char **tokens, char **names) {
         if (!strcmp(*(tokens + i), "=")) break;
         if (cleanName(tokens + i)) {
             if (strlen(*(tokens + i)) == 0) continue;
-            names[j] = malloc(100 * sizeof(char));
+            names[j] = malloc(50 * sizeof(char));
             strcpy(names[j++], tokens[i]);
         } else {
             break;
         }
         free(tokens[i]);
     }
-
     return j;
 
 }
@@ -131,7 +130,7 @@ void tokenizeStatement(char *statement, char **tokens) {
     int tokcnt = 0;
     for (char *i = strtok(statement, " "); i != NULL; i = strtok(NULL, " ")) {
         tokens[tokcnt] = malloc(30 * sizeof(char));
-        temp = malloc(100 * sizeof(char));
+        temp = malloc((strlen(i)+1) * sizeof(char));
         strcpy(temp, i);
         strcpy(tokens[tokcnt++], temp);
         free(temp);
@@ -140,14 +139,14 @@ void tokenizeStatement(char *statement, char **tokens) {
 }
 
 long getVariableNames(char **statements, char ***names) {
-    char **tokens = malloc(sizeof(char*) * 200);
+    char **tokens = malloc(sizeof(char *) * 100);
     char **namesInc = *names;
 
     do {
         tokenizeStatement(*statements, tokens);
         namesInc = namesInc + getNames(tokens, namesInc);
         free(tokens);
-        tokens = malloc(sizeof(char*) * 200);
+        tokens = malloc(sizeof(char *) * 200);
     } while (*(statements++ + 1) != NULL);
 
     puts("all names read!");
@@ -178,9 +177,9 @@ int isValidNameChar(char ch) {
 }
 
 //Keys are strings in this case so strcmp should suffice
-int comparatorKey(const void* first, const void* next){
-    KvPair* key1 = (KvPair*)first;
-    KvPair* key2 = (KvPair*)next;
+int comparatorKey(const void *first, const void *next) {
+    KvPair *key1 = (KvPair *) first;
+    KvPair *key2 = (KvPair *) next;
 
     return strcmp(key1->key, key2->key);
 }
@@ -188,29 +187,32 @@ int comparatorKey(const void* first, const void* next){
 //Hashmap 1 has { substrings : DLL}
 //Hashmap 2 has { DLL of names }
 void seeMatching(char **names, int num, int matching) {
-    HashMap* hashMap = newHashMap(sizeof(char), SIZE_OF_DLL, comparatorKey);
+    HashMap *hashMap = newHashMap(sizeof(char), SIZE_OF_DLL, comparatorKey);
 
     for (int i = 0; i < num; ++i) {
-        char* substr = substring(names[i], 0, matching - 1);
-        KvPair* kv = getHashMapMut(hashMap, substr);
-        if(kv == NULL){
-            DoublyLinkedList * val = newDLL(sizeof(char), (comparator) strcmp);
+        char *substr = substring(names[i], 0, matching - 1);
+        KvPair *kv = getHashMapMut(hashMap, substr);
+        if (kv == NULL) {
+            DoublyLinkedList *val = newDLL(sizeof(char), (comparator) strcmp);
             appendDLL(val, names[i], strlen(names[i]));
-            insertHashMap(hashMap, substr, val, (int)strlen(substr), 1);
+            insertHashMap(hashMap, substr, val, (int) strlen(substr), 1);
         } else {
-            appendDLL((DoublyLinkedList*)kv->value, names[i], strlen(names[i]));
+            appendDLL((DoublyLinkedList *) kv->value, names[i], strlen(names[i]));
         }
         free(substr);
+        free(names[i]);
     }
+    free(names);
 
     DoublyLinkedList *list = flattenHashMap(hashMap);
     int listLen = lengthDLL(list);
 
     for (int i = 0; i < listLen; ++i) {
-        KvPair* pair = getDLL(list, i);
-        if(lengthDLL(pair->value) > 1){
-            for (int j = 0; j < lengthDLL(pair->value); ++j)
-                puts(getDLL(pair->value, j));
+        DoublyLinkedList *element = ((KvPair *)getDLL(list, i))->value;
+        char* value = getDLL(element,0);
+        if (lengthDLL(element) > 1) {
+            for (int j = 0; j < lengthDLL(element); ++j)
+                puts(getDLL(element, j));
         }
     }
 

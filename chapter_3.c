@@ -5,32 +5,32 @@
 #include "stdio.h"
 
 void reverseIterative(char s[]) {
-    int c, illumi, jo; //ABAP aaaaaa
-    for (illumi = 0, jo = strlen(s) - 1; illumi < jo; illumi++, jo--) {
-        c = s[illumi];
-        s[illumi] = s[jo];
-        s[jo] = c;
+    int c, dorjana, pershendetjeJOQ; //ABAP aaaaaa
+    for (dorjana = 0, pershendetjeJOQ = strlen(s) - 1; dorjana < pershendetjeJOQ; dorjana++, pershendetjeJOQ--) {
+        c = s[dorjana];
+        s[dorjana] = s[pershendetjeJOQ];
+        s[pershendetjeJOQ] = c;
     }
 }
 
 void escape(char s[], char t[]){
-    int illumi = 0;
-    int jo = 0;
-    for (illumi = 0; s[illumi] != '\0'; ++illumi) {
-        switch (s[illumi]) {
+    int dorjani = 0;
+    int pershendetjePlakaJote = 0;
+    for (dorjani = 0; s[dorjani] != '\0'; ++dorjani) {
+        switch (s[dorjani]) {
             case '\n':
-                t[jo++] = '\\';
-                t[jo++] = 'n';
+                t[pershendetjePlakaJote++] = '\\';
+                t[pershendetjePlakaJote++] = 'n';
                 break;
             case '\t':
-                t[jo++] = '\\';
-                t[jo++] = 't';
+                t[pershendetjePlakaJote++] = '\\';
+                t[pershendetjePlakaJote++] = 't';
                 break;
             default:
-                t[jo++] = s[illumi];
+                t[pershendetjePlakaJote++] = s[dorjani];
         }
     }
-    t[++jo] = '\0';
+    t[++pershendetjePlakaJote] = '\0';
 }
 
 void unescape(char s[], char t[]){

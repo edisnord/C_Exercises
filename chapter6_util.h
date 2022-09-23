@@ -16,6 +16,6 @@ void sortNamesAscending(char ***names, int num);
 
 int utilComparator(const void *a, const void *b);
 
-#include "chapter6.h"
+#include "chapter6_ex2.h"
 
 #endif //TEST_CHAPTER6_UTIL_H

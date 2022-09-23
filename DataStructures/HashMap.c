@@ -3,7 +3,7 @@
 //
 
 #include <memory.h>
-#include "hashmap.h"
+#include "HashMap.h"
 
 struct HashMap {
     rbTree *tree;

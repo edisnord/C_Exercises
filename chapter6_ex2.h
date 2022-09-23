@@ -5,7 +5,7 @@
 #ifndef TEST_CHAPTER6_EX2_H
 #define TEST_CHAPTER6_EX2_H
 
-#include "DataStructures/hashmap.h"
+#include "DataStructures/HashMap.h"
 #include "DataStructures/DoublyLinkedList.h"
 #include <ctype.h>
 #include "stdlib.h"

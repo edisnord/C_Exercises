@@ -3,7 +3,7 @@
 //
 
 #include "RBTree.h"
-#include "hashmap.h"
+#include "HashMap.h"
 
 
 enum colors {

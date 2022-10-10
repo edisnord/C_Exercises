@@ -1,7 +1,8 @@
-#include "chapter6_ex2.h"
-#include "chapter_6-3&4.h"
+#include "chapter8.h"
+#include "stdio.h"
 
-int main() {
-    wordOccurrences("/home/edish/CLionProjects/C_Exercises/text.txt");
+int main(int argv, char* args[]) {
+
+
 }
 

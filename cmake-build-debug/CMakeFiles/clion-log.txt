@@ -1,4 +1,4 @@
-/home/edish/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/222.3739.54/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/edish/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/222.3739.54/bin/ninja/linux/ninja -DCMAKE_C_COMPILER=/bin/gcc -DCMAKE_CXX_COMPILER=/bin/g++ -G Ninja -S /home/edish/CLionProjects/C_Exercises -B /home/edish/CLionProjects/C_Exercises/cmake-build-debug
+/home/edish/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/edish/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/linux/ninja -DCMAKE_C_COMPILER=/bin/gcc -DCMAKE_CXX_COMPILER=/bin/g++ -G Ninja -S /home/edish/CLionProjects/C_Exercises -B /home/edish/CLionProjects/C_Exercises/cmake-build-debug
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/edish/CLionProjects/C_Exercises/cmake-build-debug

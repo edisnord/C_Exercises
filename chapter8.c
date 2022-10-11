@@ -35,59 +35,106 @@
 //    (*buf)[charCount] = '\0';
 //    return charCount;
 //}
-FILE *fopen(char *name, const char *mode) {
-    int fd;
-    FILE *fp = NULL;
+//FILE *fopen(char *name, const char *mode) {
+//    int fd;
+//    FILE *fp = NULL;
+//
+//    for (int i = 0; i < OPEN_MAX; ++i) {
+//        if (_iob[i].flag.read != 1 && _iob->flag.write != 1) {
+//            fp = &_iob[i];
+//            break;
+//        }
+//    }
+//    if (fp == NULL) {
+//        return NULL;
+//    }
+//    if(*mode != 'w' && *mode != 'r' && *mode != 'a')
+//        return NULL;
+//    if(*mode == 'w')
+//        fd = creat(name, PERMS);
+//    else if (*mode == 'a') {
+//        if ((fd = open(name, O_WRONLY, 0)) == -1)
+//            fd = creat(name, PERMS);
+//        lseek(fd, 0, 2);
+//    } else
+//        fd = open(name, O_RDONLY, 0);
+//    if(fd == -1)
+//        return NULL;
+//
+//    fp->fd = fd;
+//    fp->base = NULL;
+//    fp->cnt = 0;
+//    fp->flag.write = *mode == 'w' ? 1 : 0;
+//    fp->flag.read = *mode == 'r' ? 1 : 0;
+//    return fp;
+//}
 
-    for (int i = 0; i < OPEN_MAX; ++i) {
-        if (_iob[i].flag.read != 1 && _iob->flag.write != 1) {
-            fp = &_iob[i];
-            break;
-        }
-    }
-    if (fp == NULL) {
-        return NULL;
-    }
-    if(*mode != 'w' && *mode != 'r' && *mode != 'a')
-        return NULL;
-    if(*mode == 'w')
-        fd = creat(name, PERMS);
-    else if (*mode == 'a') {
-        if ((fd = open(name, O_WRONLY, 0)) == -1)
-            fd = creat(name, PERMS);
-        lseek(fd, 0, 2);
-    } else
-        fd = open(name, O_RDONLY, 0);
-    if(fd == -1)
-        return NULL;
+//int _fillbuf(FILE* file){
+//    int bufsize;
+//
+//    if(file->flag.eof == true){
+//        return EOF;
+//    }
+//    bufsize = file->flag.unbuf == true ? 1 : BUFSIZ;
+//    if (file->base == NULL)
+//        if((file->base = malloc(bufsize)) == NULL)
+//            return EOF;
+//    file->ptr = file->base;
+//    file->cnt = read(file->fd, file->ptr, bufsize);
+//    if(--file->cnt <= 0){
+//        if(file->cnt == -1)
+//            file->flag.eof = 1;
+//        else
+//            file->flag.err = 1;
+//        file->cnt = 0;
+//        return EOF;
+//    }
+//    return (unsigned char) *file->ptr++;
+//}
+//
+//int _flushbuf(char a, FILE *file){
+//    if (fflush(file) == EOF)
+//        return EOF;
+//    *(file->ptr) = a;
+//    return a;
+//}
+//
+//int fflush(FILE *file) {
+//    long currBytes = file->ptr - file->base;
+//    if(write(file->fd, file->base, currBytes) == -1){
+//        file->flag.err = 1;
+//        return EOF;
+//    }
+//    free(file->ptr);
+//    free(file->base);
+//    file->base = malloc(currBytes);
+//    file->ptr = file->base;
+//    return 0;
+//}
+//
+//int fclose(FILE *file) {
+//    if(close(file->fd) == -1){
+//        file->flag.err = 1;
+//        return EOF;
+//    } else {
+//        file->fd = -1;
+//        file->flag.write = 1;
+//        file->flag.read = 0;
+//        file->flag.eof = 1;
+//        return 0;
+//    }
+//}
 
-    fp->fd = fd;
-    fp->base = NULL;
-    fp->cnt = 0;
-    fp->flag.write = *mode == 'w' ? 1 : 0;
-    fp->flag.read = *mode == 'r' ? 1 : 0;
-    return fp;
+//8-4
+int fseek(FILE *file, long offset, int origin) {
+    if(lseek(file->fd, offset, origin) == -1){
+        file->flag.err = 1;
+        return EOF;
+    }
+    else return 0;
 }
 
-int _fillbuf(FILE* file){
-    int bufsize;
-
-    if(file->flag.eof == true){
-        return EOF;
-    }
-    bufsize = file->flag.unbuf == true ? 1 : BUFSIZ;
-    if (file->base == NULL)
-        if((file->base = malloc(bufsize)) == NULL)
-            return EOF;
-    file->ptr = file->base;
-    file->cnt = read(file->fd, file->ptr, bufsize);
-    if(--file->cnt <= 0){
-        if(file->cnt == -1)
-            file->flag.eof = 1;
-        else
-            file->flag.err = 1;
-        file->cnt = 0;
-        return EOF;
-    }
-    return (unsigned char) *file->ptr++;
+//8-6
+void* calloc2(unsigned int n, unsigned long size){
+    return malloc(n * size);
 }

@@ -47,14 +47,28 @@ bool checkFlags(FILE *file, ...);
 
 int _fillbuf(FILE *file);
 
-int _flushbuf(int a, FILE *file);
+//8-3
+int _flushbuf(char a, FILE *file);
+
+int fflush(FILE* file);
+
+int fclose(FILE* file);
+//8-3
+
+//8-4
+int fseek(FILE* file, long offset, int origin);
+//8-4
+
+//8-6
+void* calloc2(unsigned int n, unsigned long size);
+//8-6
 
 FILE* fopen(char* name, const char *mode);
 
 #define getc(p) --(p)->cnt >= 0 \
                 ? (unsigned char) *(p)->ptr++ : _fillbuf((p))
 #define putc(x,p) --(p)->cnt >= 0 \
-                ? *(p)->ptr++ : _flushbuf((x), (p))
+                ? *(p)->ptr++ = (x): _flushbuf((x), (p))
 
 #define getchar() getc(stdin)
 #define putchar(x) putc((x), stdout)
